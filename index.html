@@ -1,0 +1,2309 @@
+<html lang="pt-BR"><head>
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none';script-src 'self' 'unsafe-inline' blob: https://cdn.tailwindcss.com/3.4.17 https://unpkg.com/lucide@1.43.0/dist/umd/ https://unpkg.com/leaflet@1.9.4/dist/ https://cdn.jsdelivr.net/npm/topojson-client@3.1.0/dist/ https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/ https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/ https://cdn.jsdelivr.net/npm/plotly.js-dist-min@2.32.0/ https://cdn.jsdelivr.net/npm/echarts@6.1.0/dist/ https://cdn.jsdelivr.net/npm/scrollama@3.2.0/build/ https://cdn.jsdelivr.net/npm/katex@0.18.2/dist/ https://cdn.jsdelivr.net/npm/mathjs@12.4.3/lib/browser/ https://cdn.jsdelivr.net/npm/three@0.160.0/build/ https://cdn.jsdelivr.net/npm/tone@14.9.17/build/ https://cdn.jsdelivr.net/npm/matter-js@0.19.0/build/ https://cdn.jsdelivr.net/npm/cannon-es@0.20.0/dist/ https://cdn.jsdelivr.net/npm/mermaid@11.17.2/dist/ https://cdn.jsdelivr.net/npm/cytoscape@3.34.3/dist/ https://unpkg.com/roughjs@4.6.6/bundled/;style-src 'self' 'unsafe-inline' https://fonts.googleapis.com/css https://fonts.googleapis.com/css2 https://cdn.jsdelivr.net/npm/katex@0.18.2/dist/ https://unpkg.com/leaflet@1.9.4/dist/ https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/ https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.46.0/dist/ https://cdn.jsdelivr.net/npm/iconoir@7.12.1/css/;img-src 'self' blob: data: https://unpkg.com/leaflet@1.9.4/dist/images/ https://cdn.jsdelivr.net/npm/heroicons@2.2.0/ https://lh3.googleusercontent.com https://contribution.usercontent.google.com https://lh3.google.com/rd-notebooklm/ https://lh3-dz.googleusercontent.com/notebooklm-qual/ https://lh3-dz.sandbox.google.com/rd-notebooklm-qual/ https://lh3-dy.googleusercontent.com/notebooklm/ https://lh3-dy.sandbox.google.com/rd-notebooklm/;font-src 'self' data: https://fonts.gstatic.com/s/ https://fonts.gstatic.com/l/ https://cdn.jsdelivr.net/npm/katex@0.18.2/dist/fonts/ https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/ https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.46.0/dist/fonts/ https://www.gstatic.com/external_hosted/katex/dist/fonts/;connect-src 'self' https://cdn.jsdelivr.net/npm/us-atlas@3.0.1/ https://cdn.jsdelivr.net/npm/world-atlas@2.0.2/ https://cdn.jsdelivr.net/npm/plotly.js@2.32.0/dist/topojson/;frame-src 'none';media-src 'self' blob: data:;object-src 'none';base-uri 'none';form-action 'none';worker-src 'self' blob:">
+  <script>document.addEventListener('securitypolicyviolation',function(e){try{var u=e.blockedURI||'',s=e.sourceFile||'';if(!/^https?:/i.test(u)||/^(chrome|moz|safari|safari-web)-extension(:|$)/i.test(s)){return;}window.parent.postMessage({version:'1.0',action:'ResourceBlocked',payload:{uri:u,directive:e.effectiveDirective||''}},'*');}catch(_){}});</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="artifact-type" content="dashboard">
+  <meta name="design-style" content="briefing">
+  <title>Painel PGRS — Edifício Villa Mall (Revisão 01/2026)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;family=Geist+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js"></script>
+  <script src="https://unpkg.com/lucide@1.43.0/dist/umd/lucide.min.js"></script>
+  <style>
+    :root {
+      color-scheme: light;
+
+      /* Page and surfaces: warm stone-white paper */
+      --background: #faf9f5;
+      --surface-container-low: #ffffff;
+      --surface-container: #f1efe8;
+      --surface-container-high: #e6e2d6;
+
+      /* Ink */
+      --on-surface: #17181a;
+      --on-surface-variant: #56585c;
+
+      /* Rules */
+      --outline: #17181a;
+      --outline-variant: #dedad0;
+      --border-subtle: #c8c4b8;
+
+      /* Accents */
+      --primary: #17181a;
+      --on-primary: #faf9f5;
+      --primary-container: #f2b705;
+      --on-primary-container: #17181a;
+      --secondary: #1f4e5f;
+      --secondary-soft: #e6eff2;
+      --tertiary: #785008;
+      --tertiary-soft: #f5e6c4;
+      --error: #b42318;
+      --error-soft: #fbeae8;
+      --on-error: #ffffff;
+
+      /* Semantic */
+      --positive: #2b6e52;
+      --positive-soft: #e4f0ea;
+      --warning: #b36b00;
+      --warning-soft: #fdf2dc;
+
+      /* Data series */
+      --data-1: #1f4e5f;
+      --data-2: #d99000;
+      --data-3: #2b6e52;
+      --data-4: #b84a39;
+      --data-context: #c4bfb2;
+
+      /* Fonts */
+      --font-headline: 'Source Serif 4', serif;
+      --font-body: 'Plus Jakarta Sans', sans-serif;
+      --font-label: 'Geist Mono', monospace;
+
+      /* Shape */
+      --rounded: 0.25rem;
+      --rounded-lg: 0.375rem;
+      --rounded-full: 0.25rem;
+
+      /* Style effects */
+      --section-rule: 1.5px solid var(--outline);
+      --card-border: 1px solid var(--outline-variant);
+      --badge-radius: 2px;
+      --heading-tracking: -0.02em;
+      --label-tracking: 0.08em;
+
+      /* Focus */
+      --focus: #1f4e5f;
+
+      /* Type scale (Dashboard) */
+      --display-size: clamp(1.75rem, 1.4rem + 1.2vw, 2.35rem);
+      --headline-size: clamp(1.25rem, 1.1rem + 0.5vw, 1.5rem);
+      --subhead-size: clamp(1.0625rem, 1rem + 0.25vw, 1.1875rem);
+      --body-size: clamp(0.9375rem, 0.9rem + 0.15vw, 1rem);
+      --label-size: 0.75rem;
+
+      /* Spacing scale (4pt base) */
+      --space-xs: 0.25rem;
+      --space-sm: 0.5rem;
+      --space-md: 1rem;
+      --space-lg: 1.5rem;
+      --space-xl: 2.5rem;
+      --space-2xl: 4rem;
+
+      /* Motion */
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+      --dur-micro: 120ms;
+      --dur-short: 220ms;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body {
+      overflow-x: clip;
+      margin: 0;
+      padding: 0;
+      background-color: var(--background);
+      color: var(--on-surface);
+      font-family: var(--font-body);
+      font-size: var(--body-size);
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+    }
+    header { position: static !important; }
+
+    .page-grid {
+      display: grid;
+      gap: var(--space-xl);
+      padding: var(--space-lg) var(--space-lg) var(--space-2xl);
+      max-width: 1240px;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+    .page-grid * { min-width: 0; }
+
+    /* Focus rings */
+    :focus-visible {
+      outline: 2.5px solid var(--focus);
+      outline-offset: 2px;
+    }
+
+    /* Typography & Briefing Treatments */
+    .dossier-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-sm);
+      border-bottom: var(--section-rule);
+      padding-bottom: var(--space-sm);
+      margin-bottom: var(--space-md);
+    }
+    .dossier-bar-left {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+    .dossier-pill {
+      background: var(--primary-container);
+      color: var(--on-primary-container);
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 0.6875rem;
+      letter-spacing: var(--label-tracking);
+      text-transform: uppercase;
+      padding: 0.1875rem 0.5rem;
+      border-radius: var(--badge-radius);
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+    }
+    .dossier-meta {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 500;
+      color: var(--on-surface-variant);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .title {
+      font-family: var(--font-headline);
+      font-size: var(--display-size);
+      font-weight: 600;
+      letter-spacing: var(--heading-tracking);
+      line-height: 1.08;
+      color: var(--on-surface);
+      margin: 0;
+    }
+    .standfirst {
+      font-family: var(--font-body);
+      font-size: var(--subhead-size);
+      font-weight: 600;
+      color: var(--secondary);
+      margin: var(--space-xs) 0 0;
+      max-width: 72ch;
+    }
+    .section-title {
+      font-family: var(--font-headline);
+      font-size: var(--headline-size);
+      font-weight: 600;
+      letter-spacing: var(--heading-tracking);
+      line-height: 1.15;
+      margin: 0;
+      color: var(--on-surface);
+    }
+    .section-subtitle {
+      font-size: var(--body-size);
+      color: var(--on-surface-variant);
+      margin: var(--space-xs) 0 0;
+      max-width: 70ch;
+    }
+    .index-num {
+      font-family: var(--font-label);
+      font-weight: 600;
+      font-size: var(--label-size);
+      color: var(--secondary);
+      background: var(--surface-container);
+      padding: 0.15rem 0.45rem;
+      border-radius: var(--badge-radius);
+      letter-spacing: 0.04em;
+    }
+
+    /* Header metadata strip */
+    .header-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.8fr) minmax(0, 1fr);
+      gap: var(--space-lg);
+      align-items: start;
+    }
+    .dossier-summary-box {
+      background: var(--surface-container);
+      border-top: var(--section-rule);
+      padding: var(--space-md);
+      border-radius: 0 0 var(--rounded-lg) var(--rounded-lg);
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--space-sm) var(--space-md);
+    }
+    .meta-kv {
+      display: flex;
+      flex-direction: column;
+      gap: 0.125rem;
+    }
+    .meta-k {
+      font-family: var(--font-label);
+      font-size: 0.6875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--on-surface-variant);
+    }
+    .meta-v {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--on-surface);
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Controls Bar */
+    .control-strip {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: var(--space-md);
+      background: var(--surface-container-low);
+      border: var(--card-border);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-md) var(--space-lg);
+    }
+    .control-group {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+    }
+    .control-label {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--on-surface-variant);
+    }
+    .segmented {
+      display: inline-flex;
+      flex-wrap: wrap;
+      gap: var(--space-xs);
+      background: var(--surface-container);
+      padding: var(--space-xs);
+      border-radius: var(--rounded);
+    }
+    .seg-btn {
+      font-family: var(--font-body);
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--on-surface-variant);
+      background: transparent;
+      border: 1px solid transparent;
+      border-radius: var(--rounded);
+      padding: 0.45rem 0.75rem;
+      min-height: 36px;
+      cursor: pointer;
+      transition: background-color var(--dur-micro) var(--ease-in-out), color var(--dur-micro) var(--ease-in-out);
+    }
+    .seg-btn:hover {
+      color: var(--on-surface);
+      background: var(--surface-container-high);
+    }
+    .seg-btn.active {
+      background: var(--primary);
+      color: var(--on-primary);
+    }
+    .action-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+    .btn {
+      font-family: var(--font-body);
+      font-size: 0.8125rem;
+      font-weight: 600;
+      border-radius: var(--rounded);
+      padding: 0.5rem 0.9rem;
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      cursor: pointer;
+      border: 1px solid var(--border-subtle);
+      background: var(--surface-container-low);
+      color: var(--on-surface);
+      transition: background-color var(--dur-micro) var(--ease-out), box-shadow var(--dur-micro) var(--ease-out);
+    }
+    .btn:hover {
+      background: var(--surface-container);
+    }
+    .btn-primary {
+      background: var(--primary);
+      color: var(--on-primary);
+      border-color: var(--primary);
+    }
+    .btn-primary:hover {
+      background: var(--secondary);
+      border-color: var(--secondary);
+    }
+    .btn-warning-armed {
+      background: var(--error-soft);
+      color: var(--error);
+      border-color: var(--error);
+    }
+
+    /* KPI Row */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: var(--space-md);
+    }
+    .figure-card {
+      background: var(--surface-container-low);
+      border: var(--card-border);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-md) var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: var(--space-sm);
+    }
+    .figure-card.accent-top {
+      border-top: 3px solid var(--secondary);
+    }
+    .figure-card.gold-top {
+      border-top: 3px solid var(--primary-container);
+    }
+    .figure-card.pine-top {
+      border-top: 3px solid var(--positive);
+    }
+    .kpi-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-xs);
+    }
+    .kpi-label {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--on-surface-variant);
+      font-weight: 500;
+    }
+    .kpi-value {
+      font-family: var(--font-headline);
+      font-size: clamp(1.65rem, 1.35rem + 0.9vw, 2.15rem);
+      font-weight: 600;
+      line-height: 1.05;
+      color: var(--on-surface);
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    .kpi-sub {
+      font-size: 0.8125rem;
+      color: var(--on-surface-variant);
+      line-height: 1.4;
+    }
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      font-family: var(--font-label);
+      font-size: 0.6875rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 0.18rem 0.45rem;
+      border-radius: var(--rounded);
+    }
+    .tag-pine { background: var(--positive-soft); color: var(--positive); }
+    .tag-amber { background: var(--tertiary-soft); color: var(--tertiary); }
+    .tag-slate { background: var(--secondary-soft); color: var(--secondary); }
+    .tag-error { background: var(--error-soft); color: var(--error); }
+
+    /* Main Analytical Grid */
+    .two-col-asym {
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+      gap: var(--space-lg);
+      align-items: stretch;
+    }
+    .two-col-equal {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--space-lg);
+      align-items: stretch;
+    }
+
+    .panel-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: var(--space-sm);
+      border-bottom: 1px solid var(--outline-variant);
+      padding-bottom: var(--space-sm);
+      margin-bottom: var(--space-md);
+    }
+    .panel-title {
+      font-family: var(--font-headline);
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin: 0;
+      color: var(--on-surface);
+    }
+    .panel-caption {
+      font-family: var(--font-label);
+      font-size: 0.72rem;
+      color: var(--on-surface-variant);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-top: 0.2rem;
+    }
+
+    .chart-box {
+      position: relative;
+      width: 100%;
+      min-height: 290px;
+      height: 290px;
+    }
+    .chart-box-tall {
+      position: relative;
+      width: 100%;
+      min-height: 310px;
+      height: 310px;
+    }
+
+    /* Month Selector Pills + Readout */
+    .month-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-xs);
+    }
+    .month-btn {
+      font-family: var(--font-label);
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.35rem 0.65rem;
+      min-height: 36px;
+      border-radius: var(--rounded);
+      border: 1px solid var(--border-subtle);
+      background: var(--surface-container-low);
+      color: var(--on-surface);
+      cursor: pointer;
+    }
+    .month-btn.active {
+      background: var(--secondary);
+      color: var(--on-primary);
+      border-color: var(--secondary);
+    }
+
+    .aside-box {
+      background: var(--surface-container);
+      border-top: var(--section-rule);
+      padding: var(--space-md);
+      border-radius: 0 0 var(--rounded-lg) var(--rounded-lg);
+      font-size: 0.875rem;
+    }
+    .aside-box strong {
+      color: var(--on-surface);
+    }
+
+    .month-detail-strip {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: var(--space-sm);
+      background: var(--surface-container);
+      padding: var(--space-sm) var(--space-md);
+      border-radius: var(--rounded);
+      margin-top: var(--space-sm);
+    }
+
+    /* Volumetric Legal Benchmark */
+    .benchmark-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+    .bench-row {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+    .bench-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: var(--space-sm);
+      font-size: 0.875rem;
+    }
+    .bench-name { font-weight: 600; color: var(--on-surface); }
+    .bench-num {
+      font-family: var(--font-label);
+      font-weight: 600;
+      font-size: 0.8125rem;
+      font-variant-numeric: tabular-nums;
+    }
+    .bench-track {
+      position: relative;
+      height: 14px;
+      background: var(--surface-container);
+      border-radius: var(--rounded);
+      overflow: hidden;
+      border: 1px solid var(--outline-variant);
+    }
+    .bench-fill {
+      height: 100%;
+      border-radius: var(--rounded);
+      transition: width var(--dur-short) var(--ease-out);
+    }
+    .bench-fill.safe { background: var(--data-1); }
+    .bench-fill.peak { background: var(--data-2); }
+    .bench-fill.avg { background: var(--data-3); }
+    .bench-limit-line {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 85.7%; /* 120L out of 140L scale */
+      width: 2px;
+      background: var(--error);
+    }
+
+    /* Sensitivity Simulator */
+    .sim-box {
+      background: var(--surface-container);
+      border-top: var(--section-rule);
+      padding: var(--space-md) var(--space-lg);
+      border-radius: 0 0 var(--rounded-lg) var(--rounded-lg);
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+      gap: var(--space-lg);
+      align-items: center;
+      margin-top: var(--space-md);
+    }
+    .slider-controls {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 92px;
+      gap: var(--space-sm);
+      align-items: end;
+    }
+    input[type="range"] {
+      width: 100%;
+      accent-color: var(--secondary);
+      min-height: 44px;
+      cursor: pointer;
+    }
+    input[type="number"], select {
+      font-family: var(--font-label);
+      font-size: 0.875rem;
+      padding: 0.55rem 0.65rem;
+      min-height: 44px;
+      background: var(--surface-container-low);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--rounded);
+      color: var(--on-surface);
+      width: 100%;
+    }
+    select {
+      padding-right: 2rem;
+    }
+    .sim-outputs {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: var(--space-sm);
+    }
+    .sim-out-card {
+      background: var(--surface-container-low);
+      border: var(--card-border);
+      border-radius: var(--rounded);
+      padding: var(--space-sm) var(--space-md);
+    }
+
+    /* Flow Map Section */
+    .flow-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr);
+      gap: var(--space-lg);
+      align-items: start;
+    }
+    .svg-wrap {
+      background: var(--surface-container-low);
+      border: var(--card-border);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-md);
+    }
+    .flow-svg {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .flow-node {
+      cursor: pointer;
+      transition: opacity var(--dur-micro) var(--ease-out);
+    }
+    .flow-node:hover rect {
+      stroke-width: 2.2;
+    }
+    .flow-node.selected rect {
+      stroke: var(--primary-container);
+      stroke-width: 2.8;
+    }
+    .inspector-card {
+      background: var(--surface-container-low);
+      border: var(--card-border);
+      border-top: 3px solid var(--secondary);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+    .inspector-list {
+      margin: 0;
+      padding-left: 1.15rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      font-size: 0.875rem;
+      color: var(--on-surface-variant);
+    }
+    .inspector-list strong { color: var(--on-surface); }
+
+    /* Governance Table & Filters */
+    .table-wrap {
+      overflow-x: auto;
+      background: var(--surface-container-low);
+      border: var(--card-border);
+      border-radius: var(--rounded-lg);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.875rem;
+    }
+    thead th {
+      font-family: var(--font-label);
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--on-surface);
+      background: var(--surface-container);
+      border-bottom: 1.5px solid var(--outline);
+      padding: 0.75rem var(--space-md);
+      white-space: nowrap;
+    }
+    tbody td {
+      padding: 0.85rem var(--space-md);
+      border-bottom: 1px solid var(--outline-variant);
+      vertical-align: top;
+    }
+    tbody tr:last-child td { border-bottom: none; }
+    tbody tr:hover { background: var(--background); }
+    .num-col {
+      font-family: var(--font-label);
+      font-variant-numeric: tabular-nums;
+      text-align: right;
+      white-space: nowrap;
+    }
+    .status-select {
+      font-family: var(--font-label);
+      font-size: 0.75rem;
+      font-weight: 600;
+      min-height: 36px;
+      padding: 0.35rem 1.75rem 0.35rem 0.55rem;
+      width: auto;
+      min-width: 145px;
+    }
+
+    /* Roadmap Timeline */
+    .roadmap-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: var(--space-md);
+    }
+    .milestone-card {
+      background: var(--surface-container-low);
+      border: var(--card-border);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-md);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+    .milestone-card.completed {
+      border-left: 4px solid var(--positive);
+    }
+    .milestone-card.next {
+      border-left: 4px solid var(--primary-container);
+    }
+    .milestone-check {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-sm);
+      cursor: pointer;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--on-surface);
+      min-height: 44px;
+    }
+    .milestone-check input[type="checkbox"] {
+      width: 20px;
+      height: 20px;
+      margin-top: 2px;
+      accent-color: var(--positive);
+      flex-shrink: 0;
+      cursor: pointer;
+    }
+
+    .footer-note {
+      border-top: var(--section-rule);
+      padding-top: var(--space-md);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: var(--space-md);
+      font-size: 0.8125rem;
+      color: var(--on-surface-variant);
+    }
+    .status-banner {
+      font-family: var(--font-label);
+      font-size: 0.75rem;
+      color: var(--positive);
+      min-height: 1.25rem;
+    }
+
+    /* Responsive Breakpoints */
+    @media (max-width: 1024px) {
+      .kpi-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .two-col-asym, .two-col-equal, .flow-layout, .header-grid, .sim-box {
+        grid-template-columns: 1fr;
+      }
+      .roadmap-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    @media (max-width: 640px) {
+      .page-grid { padding: var(--space-md) var(--space-sm) var(--space-xl); gap: var(--space-lg); }
+      .kpi-grid, .roadmap-grid, .sim-outputs, .month-detail-strip, .dossier-summary-box {
+        grid-template-columns: 1fr;
+      }
+      .control-strip { padding: var(--space-md); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+ </head>
+ <body>
+  <main class="page-grid">
+   <!-- CABEÇALHO DO DOSSIÊ -->
+   <header>
+    <div class="dossier-bar">
+     <div class="dossier-bar-left">
+      <span class="dossier-pill">PAINEL PGRS · REV. 01/2026</span> <span class="dossier-meta">EDIFÍCIO VILLA MALL · ÁGUAS CLARAS, DF · ABNT NBR 17100-1:2023</span>
+     </div>
+     <span class="dossier-meta" id="sync-status-label">DMR Nº 732717 (3º TRIM/2026) · REG. SLU Nº 007411</span>
+    </div>
+    <div class="header-grid">
+     <div>
+      <h1 class="title">Governança de Resíduos, Desvio de Aterro e Eficiência Tarifária</h1>
+      <p class="standfirst">Monitoramento quantitativo, rastreabilidade SINIR/MTR e plano corretivo rumo ao protocolo de baixa cadastral de Grande Gerador em janeiro de 2027.</p>
+     </div>
+     <aside class="dossier-summary-box" aria-label="Ficha técnica do empreendimento">
+      <div class="meta-kv">
+       <span class="meta-k">Responsável Legal</span> <span class="meta-v">MS Satélite Construção S/A</span>
+      </div>
+      <div class="meta-kv">
+       <span class="meta-k">Gestão &amp; Resp. Técnico</span> <span class="meta-v">Tok Ambiental · CRQ-12 nº 12201553</span>
+      </div>
+      <div class="meta-kv">
+       <span class="meta-k">Ocupação (31/10/2026)</span> <span class="meta-v">51 / 60 unidades (49 cent. + 2 GG)</span>
+      </div>
+      <div class="meta-kv">
+       <span class="meta-k">ABL &amp; Fluxo Diário</span> <span class="meta-v">4.492,09 m² · ≈ 3.000 pessoas/dia</span>
+      </div>
+     </aside>
+    </div>
+   </header>
+   <!-- BARRA DE CONTROLES INTERATIVOS -->
+   <section class="control-strip" aria-label="Controles de visualização e cenário tarifário">
+    <div class="control-group">
+     <span class="control-label">Cenário Tarifário (Ecopense Ecologia Urbana)</span>
+     <div class="segmented" role="group" aria-label="Selecionar cenário tarifário">
+      <button type="button" class="seg-btn active" id="btn-scen-both" onclick="setScenario('both')">Comparativo (Base × Condicional)</button> <button type="button" class="seg-btn" id="btn-scen-base" onclick="setScenario('base')">Cenário Base (R$ 241,00/t)</button> <button type="button" class="seg-btn" id="btn-scen-cond" onclick="setScenario('cond')">Condicional IGP-M (R$ 267,46/t)</button>
+     </div>
+    </div>
+    <div class="control-group">
+     <span class="control-label">Ações de Governança &amp; Exportação</span>
+     <div class="action-row">
+      <button type="button" class="btn btn-primary" onclick="exportGovernanceCsv()"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="download" aria-hidden="true" class="lucide lucide-download"><path d="M12 15V3"></path><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><path d="m7 10 5 5 5-5"></path></svg> Exportar Matriz CSV </button> <button type="button" class="btn" id="btn-reset-state" onclick="resetDashboardState(this)"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="rotate-ccw" aria-hidden="true" class="lucide lucide-rotate-ccw"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path><path d="M3 3v5h5"></path></svg> Restaurar Padrão </button>
+     </div>
+    </div>
+   </section>
+   <div id="live-feedback" class="status-banner" role="status" aria-live="polite"></div>
+   <!-- 1. CARDS DE KPI PRINCIPAIS -->
+   <section aria-label="Indicadores-chave de desempenho do 3º trimestre de 2026">
+    <div class="kpi-grid">
+     <article class="figure-card pine-top">
+      <div class="kpi-head">
+       <span class="kpi-label">Taxa de Desvio Aparente</span> <span class="tag tag-pine">3º Trim/2026</span>
+      </div>
+      <div class="kpi-value">37,07%</div>
+      <div class="kpi-sub">
+       <strong>1.460 kg</strong> desviados de 3.939 kg monitorados (média de <strong>486,7 kg/mês</strong> em papelão reciclado; 6.000 L/mês).
+      </div>
+     </article>
+     <article class="figure-card gold-top">
+      <div class="kpi-head">
+       <span class="kpi-label">Custo Evitado Anualizado</span> <span class="tag tag-amber" id="kpi-cost-tag">Base × Condicional</span>
+      </div>
+      <div class="kpi-value" id="kpi-cost-value">R$ 1.407,54 – 1.562,07</div>
+      <div class="kpi-sub" id="kpi-cost-sub">Economia mensal de R$ 117,29 (Base) a R$ 130,17 (IGP-M) nas faturas da Ecopense; redução direta de 37,07% no aterro.</div>
+     </article>
+     <article class="figure-card accent-top">
+      <div class="kpi-head">
+       <span class="kpi-label">Geração Diária Centralizada</span> <span class="tag tag-pine">−35,8% do Teto</span>
+      </div>
+      <div class="kpi-value">77,00 L/dia</div>
+      <div class="kpi-sub">
+       Frente ao teto de <strong>120,00 L/dia</strong> (Lei DF nº 5.610/2016). Equivale a 26,95 kg/dia (0,35 kg/L SLU) ou 1,57 L/dia por unidade.
+      </div>
+     </article>
+     <article class="figure-card">
+      <div class="kpi-head">
+       <span class="kpi-label">Conformidade &amp; Rastreio</span> <span class="tag tag-slate" id="kpi-nc-tag">0/4 Concluídas · 2 Exec.</span>
+      </div>
+      <div class="kpi-value" id="kpi-nc-value">100% MTR/CDF</div>
+      <div class="kpi-sub" id="kpi-nc-sub">CDFs 738912, 751044 e 764921 (CGA Baru S/A) + tickets do catador. Tolerância de conciliação: 0%.</div>
+     </article>
+    </div>
+   </section>
+   <!-- 2. GRÁFICOS: EVOLUÇÃO MENSAL DO DESVIO & CUSTOS EVITADOS POR TRIMESTRE -->
+   <section class="two-col-asym" aria-label="Gráficos de evolução mensal e custos evitados">
+    <!-- Painel A: Evolução Mensal da Taxa de Desvio -->
+    <article class="figure-card">
+     <div class="panel-header">
+      <div>
+       <span class="index-num">01</span>
+       <h2 class="panel-title">Evolução Mensal da Taxa de Desvio e Massa (3º Trim/2026)</h2>
+       <p class="panel-caption">Recicláveis desviados (tickets) × Rejeitos ao aterro (DMR nº 732717 / CDFs SINIR)</p>
+      </div>
+      <div class="month-pills" role="group" aria-label="Selecionar mês para inspeção">
+       <button type="button" class="month-btn active" id="m-btn-all" onclick="selectMonth('all')">Trimestre</button> <button type="button" class="month-btn" id="m-btn-jul" onclick="selectMonth('jul')">Jul/26</button> <button type="button" class="month-btn" id="m-btn-ago" onclick="selectMonth('ago')">Ago/26</button> <button type="button" class="month-btn" id="m-btn-set" onclick="selectMonth('set')">Set/26</button>
+      </div>
+     </div>
+     <div class="chart-box">
+      <canvas id="diversionChart" aria-label="Gráfico de evolução mensal da massa de recicláveis, rejeitos e taxa de desvio" width="500" height="290" style="display: block; box-sizing: border-box; height: 290px; width: 500px;"></canvas>
+     </div>
+     <div class="month-detail-strip" id="month-detail-strip">
+      <div class="meta-kv">
+       <span class="meta-k" id="md-period-label">Período: 3º Trim/2026</span> <span class="meta-v" id="md-total">3.939 kg monitorados</span>
+      </div>
+      <div class="meta-kv">
+       <span class="meta-k">Recicláveis Desviados</span> <span class="meta-v" id="md-rec">1.460 kg (486,7/mês)</span>
+      </div>
+      <div class="meta-kv">
+       <span class="meta-k">Rejeitos (CGA Baru)</span> <span class="meta-v" id="md-rej">2.479 kg (77,00 L/dia)</span>
+      </div>
+      <div class="meta-kv">
+       <span class="meta-k">Taxa de Desvio</span> <span class="meta-v" id="md-rate">37,07% (Pico 45,97%)</span>
+      </div>
+     </div>
+     <div class="aside-box" style="margin-top: var(--space-sm);">
+      <strong>Nota Metodológica (Seção 9 &amp; NC-04):</strong> A taxa aparente de 37,07% inclui recicláveis secos dos Grandes Geradores internos integrados à coleta seletiva. A queda em agosto (28,16%, com 1.148 kg de rejeitos) evidencia recicláveis descartados no fluxo comum (NC-04). Meta até Dez/2027: <strong>≥ 500 kg/mês</strong> (média móvel trimestral).
+     </div>
+    </article>
+    <!-- Painel B: Custos Evitados Acumulados por Trimestre -->
+    <article class="figure-card">
+     <div class="panel-header">
+      <div>
+       <span class="index-num">02</span>
+       <h2 class="panel-title">Custos Evitados Acumulados por Trimestre</h2>
+       <p class="panel-caption">Termo Aditivo nº 25/2022-DF · Ecopense Ecologia Urbana</p>
+      </div>
+      <div class="month-pills" role="group" aria-label="Alternar modo de visualização financeira">
+       <button type="button" class="month-btn" id="fin-mode-cum" onclick="setFinChartMode('cum')">Acumulado Anual</button> <button type="button" class="month-btn active" id="fin-mode-q3" onclick="setFinChartMode('q3')">3º Trim (Real × Sem Coleta)</button>
+      </div>
+     </div>
+     <div class="chart-box">
+      <canvas id="costChart" aria-label="Gráfico de custos evitados acumulados por trimestre" width="357" height="290" style="display: block; box-sizing: border-box; height: 290px; width: 357.5px;"></canvas>
+     </div>
+     <div class="aside-box" style="margin-top: var(--space-sm);">
+      <strong>Rastreabilidade Tarifária (Quadro 17):</strong> Tarifa contratual documentada de <strong>R$ 241,00/t</strong> (31/01/2022) e estimativa condicional atualizada pelo IGP-M/FGV (+10,98%) de <strong>R$ 267,46/t</strong> (sujeita à conferência de aditivos e NFs de 2023–2026). No 3º trimestre, o aterro custou <strong>R$ 597,44–663,03</strong> em vez de <strong>R$ 949,30–1.053,52</strong> (economia real de R$ 351,86 a R$ 390,49 no trimestre).
+     </div>
+    </article>
+   </section>
+   <!-- SIMULADOR DE SENSIBILIDADE DE DESVIO -->
+   <section class="figure-card" aria-label="Simulador de sensibilidade de desvio e tarifa Ecopense">
+    <div class="panel-header">
+     <div>
+      <span class="index-num">02B</span>
+      <h2 class="panel-title">Simulador de Sensibilidade: Impacto de Segregação Adicional na Fonte</h2>
+      <p class="panel-caption">Baseado na Seção 10.4: cada +100 kg/mês desviados evita R$ 24,10/mês (Base) ou R$ 26,75/mês (Condicional)</p>
+     </div>
+     <span class="tag tag-pine" id="sim-goal-badge">Meta ≥ 500 kg/mês Atingida</span>
+    </div>
+    <div class="sim-box">
+     <div>
+      <label class="control-label" for="slider-extra-kg" style="display:block; margin-bottom: var(--space-xs);"> Massa adicional de recicláveis recuperada (kg/mês acima da linha de base de 486,7 kg/mês) </label>
+      <div class="slider-controls">
+       <input type="range" id="slider-extra-kg" min="0" max="300" step="5" value="15" oninput="syncExtraFromSlider(this.value)"> <input type="number" id="input-extra-kg" min="0" max="300" step="5" value="15" aria-label="Massa adicional em kg por mês" oninput="syncExtraFromNumber(this.value)">
+      </div>
+      <p class="kpi-sub" style="margin: var(--space-xs) 0 0;">Ajuste para simular a recuperação de recicláveis atualmente perdidos no rejeito (NC-04) após treinamento de 100% das lojas.</p>
+     </div>
+     <div class="sim-outputs">
+      <div class="sim-out-card">
+       <span class="meta-k">Massa Mensal Projetada</span>
+       <div class="kpi-value" style="font-size: 1.45rem;" id="sim-total-kg">606,7 kg/mês</div>
+       <span class="kpi-sub" id="sim-target-diff">+106,7 kg acima da meta</span>
+      </div>
+      <div class="sim-out-card">
+       <span class="meta-k">Custo Evitado / Ano (Base)</span>
+       <div class="kpi-value" style="font-size: 1.45rem;" id="sim-annual-base">R$&nbsp;1.754,58</div>
+       <span class="kpi-sub" id="sim-delta-base">+R$&nbsp;347,04/ano</span>
+      </div>
+      <div class="sim-out-card">
+       <span class="meta-k">Custo Evitado / Ano (IGP-M)</span>
+       <div class="kpi-value" style="font-size: 1.45rem;" id="sim-annual-cond">R$&nbsp;1.947,22</div>
+       <span class="kpi-sub" id="sim-delta-cond">+R$&nbsp;385,15/ano</span>
+      </div>
+     </div>
+    </div>
+   </section>
+   <!-- 3. INDICADORES DE GERAÇÃO DIÁRIA VS LIMITE LEGAL -->
+   <section class="two-col-equal" aria-label="Indicadores de geração diária e enquadramento legal no SLU/DF">
+    <article class="figure-card">
+     <div class="panel-header">
+      <div>
+       <span class="index-num">03</span>
+       <h2 class="panel-title">Geração Diária de Indiferenciados × Limite Legal (SLU/DF)</h2>
+       <p class="panel-caption">Conversão oficial SLU/DF: 0,35 kg/L · Teto: 120,00 L/dia (Lei DF nº 5.610/2016)</p>
+      </div>
+      <span class="tag tag-pine">Não Grande Gerador</span>
+     </div>
+     <div class="benchmark-list">
+      <div class="bench-row">
+       <div class="bench-top">
+        <span class="bench-name">Média 3º Trimestre/2026 (Fluxo Centralizado)</span> <span class="bench-num">77,00 L/dia · 26,95 kg/dia (−35,8%)</span>
+       </div>
+       <div class="bench-track" aria-label="Média trimestral de 77 litros por dia frente ao limite de 120 litros">
+        <div class="bench-fill avg" style="width: 55.0%;"></div>
+        <div class="bench-limit-line" title="Limite legal: 120,00 L/dia"></div>
+       </div>
+      </div>
+      <div class="bench-row">
+       <div class="bench-top">
+        <span class="bench-name">Julho/2026 (576 kg em 31 dias)</span> <span class="bench-num">53,09 L/dia · 18,58 kg/dia (−55,8%)</span>
+       </div>
+       <div class="bench-track">
+        <div class="bench-fill safe" style="width: 37.9%;"></div>
+        <div class="bench-limit-line" title="Limite legal: 120,00 L/dia"></div>
+       </div>
+      </div>
+      <div class="bench-row">
+       <div class="bench-top">
+        <span class="bench-name">Agosto/2026 — Pico do Trimestre (1.148 kg em 31 dias)</span> <span class="bench-num">105,81 L/dia · 37,03 kg/dia (−11,8%)</span>
+       </div>
+       <div class="bench-track">
+        <div class="bench-fill peak" style="width: 75.6%;"></div>
+        <div class="bench-limit-line" title="Limite legal: 120,00 L/dia"></div>
+       </div>
+      </div>
+      <div class="bench-row">
+       <div class="bench-top">
+        <span class="bench-name">Setembro/2026 (755 kg em 30 dias)</span> <span class="bench-num">71,90 L/dia · 25,17 kg/dia (−40,1%)</span>
+       </div>
+       <div class="bench-track">
+        <div class="bench-fill safe" style="width: 51.4%;"></div>
+        <div class="bench-limit-line" title="Limite legal: 120,00 L/dia"></div>
+       </div>
+      </div>
+     </div>
+     <div class="aside-box" style="margin-top: var(--space-md);">
+      <strong>Base Jurídica (Art. 3º do Decreto DF nº 37.568/2016):</strong> O corte de 120 L/dia é aferido por gerador (CNPJ). Mesmo no pico de agosto (105,81 L/dia), o fluxo centralizado das 49 unidades (1,57 L/dia/unidade) manteve-se abaixo do teto legal, fundamentando a baixa do Registro nº 007411.
+     </div>
+    </article>
+    <article class="figure-card">
+     <div class="panel-header">
+      <div>
+       <span class="index-num">03B</span>
+       <h2 class="panel-title">Comparativo Volumétrico e Intensidade por m² (Tabela 4)</h2>
+       <p class="panel-caption">Indicadores de massa diária (kg/dia) e taxa por ABL (4.492,09 m²)</p>
+      </div>
+     </div>
+     <div class="chart-box" style="min-height: 240px; height: 240px;">
+      <canvas id="dailyChart" aria-label="Gráfico comparativo de volume diário de indiferenciados frente ao teto legal de 120 litros" width="428" height="240" style="display: block; box-sizing: border-box; height: 240px; width: 428.7px;"></canvas>
+     </div>
+     <div class="table-wrap" style="margin-top: var(--space-md);">
+      <table>
+       <thead>
+        <tr>
+         <th>Fluxo Monitorado (3º Trim/26)</th>
+         <th class="num-col">kg/dia</th>
+         <th class="num-col">L/dia</th>
+         <th class="num-col">kg/m²/dia</th>
+        </tr>
+       </thead>
+       <tbody>
+        <tr>
+         <td><strong>Não recicláveis (centralizado)</strong></td>
+         <td class="num-col">26,95</td>
+         <td class="num-col">77,00</td>
+         <td class="num-col">0,0060</td>
+        </tr>
+        <tr>
+         <td><strong>Recicláveis secos (papelão/outros)</strong></td>
+         <td class="num-col">15,87</td>
+         <td class="num-col">≈ 196</td>
+         <td class="num-col">0,0035</td>
+        </tr>
+        <tr>
+         <td><strong>Total monitorado</strong></td>
+         <td class="num-col">42,82</td>
+         <td class="num-col">N/A*</td>
+         <td class="num-col">0,0095</td>
+        </tr>
+       </tbody>
+      </table>
+     </div>
+     <p class="kpi-sub" style="margin: var(--space-xs) 0 0;">*Volumes de densidades distintas (0,35 kg/L vs. 0,081 kg/L) não são somados; o limite de 120 L/dia aplica-se apenas a indiferenciados.</p>
+    </article>
+   </section>
+   <!-- 4. MAPEAMENTO DA SEGREGAÇÃO AUTÔNOMA E INFRAESTRUTURA -->
+   <section aria-label="Mapeamento da segregação autônoma dos grandes geradores e infraestrutura">
+    <div style="margin-bottom: var(--space-md);">
+     <span class="index-num">04</span>
+     <h2 class="section-title" style="margin-top: var(--space-xs);">Mapeamento de Fluxos: Segregação Autônoma e Estrutura Centralizada</h2>
+     <p class="section-subtitle">Clique em qualquer bloco do diagrama para inspecionar responsabilidades legais, equipamentos (NBR 11174 / IN 89 SLU) e rastreabilidade documental.</p>
+    </div>
+    <div class="flow-layout">
+     <div class="svg-wrap">
+      <svg class="flow-svg" viewBox="0 0 760 400" role="img" aria-label="Diagrama interativo de fluxos de resíduos do Edifício Villa Mall">
+       <defs>
+        <marker id="arrow-slate" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+         <path d="M 0 1 L 10 5 L 0 9 z" fill="#1f4e5f"></path>
+        </marker>
+        <marker id="arrow-pine" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+         <path d="M 0 1 L 10 5 L 0 9 z" fill="#2b6e52"></path>
+        </marker>
+        <marker id="arrow-gold" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+         <path d="M 0 1 L 10 5 L 0 9 z" fill="#b36b00"></path>
+        </marker>
+       </defs>
+       <!-- Connectors -->
+       <!-- Centralizado -> Central Resíduos -->
+       <path d="M 220 75 L 285 75" stroke="#1f4e5f" stroke-width="2" fill="none" marker-end="url(#arrow-slate)"></path> <!-- Centralizado -> Contêiner Vermelho / Central Recicláveis -->
+       <path d="M 220 105 L 255 105 L 255 190 L 285 190" stroke="#2b6e52" stroke-width="2" fill="none" marker-end="url(#arrow-pine)"></path> <!-- Grandes Geradores -> Contêineres Marrons (Autônomo) -->
+       <path d="M 220 315 L 285 315" stroke="#b36b00" stroke-width="2" fill="none" marker-end="url(#arrow-gold)"></path> <!-- Grandes Geradores -> Recicláveis Secos (Integração RECICLADF) -->
+       <path d="M 190 270 L 190 210 L 285 210" stroke="#2b6e52" stroke-width="1.8" stroke-dasharray="5 4" fill="none" marker-end="url(#arrow-pine)"></path> <!-- Central Resíduos -> Ecopense / Baru -->
+       <path d="M 485 75 L 545 75" stroke="#1f4e5f" stroke-width="2" fill="none" marker-end="url(#arrow-slate)"></path> <!-- Central Recicláveis -> Catador / Capital -->
+       <path d="M 485 195 L 545 195" stroke="#2b6e52" stroke-width="2" fill="none" marker-end="url(#arrow-pine)"></path> <!-- Contêineres Marrons -> Coleta Própria GG -->
+       <path d="M 485 315 L 545 315" stroke="#b36b00" stroke-width="2" fill="none" marker-end="url(#arrow-gold)"></path> <!-- Node 1: 49 Unidades -->
+       <g class="flow-node selected" id="node-centralizado" tabindex="0" role="button" aria-label="49 Unidades no Fluxo Centralizado" onclick="selectFlowNode('centralizado')" onkeydown="if(event.key==='Enter'||event.key===' ')selectFlowNode('centralizado')">
+        <rect x="20" y="32" width="200" height="96" rx="6" fill="#ffffff" stroke="#1f4e5f" stroke-width="1.8"></rect> <text x="34" y="55" font-family="'Geist Mono', monospace" font-size="10" font-weight="600" fill="#1f4e5f">ORIGEM CENTRALIZADA</text> <text x="34" y="76" font-family="'Source Serif 4', serif" font-size="15" font-weight="600" fill="#17181a">49 Lojas/Salas + Comuns</text> <text x="34" y="96" font-family="'Plus Jakarta Sans', sans-serif" font-size="11.5" fill="#56585c">Gestão MS Satélite / Tok Ambiental</text> <text x="34" y="114" font-family="'Geist Mono', monospace" font-size="10.5" font-weight="600" fill="#2b6e52">77,00 L/dia indiferenciados</text>
+       </g>
+       <!-- Node 2: 2 Grandes Geradores -->
+       <g class="flow-node" id="node-gg" tabindex="0" role="button" aria-label="Grandes Geradores Internos: Padaria Pão Dourado e Restaurante Cantinho do Pastel" onclick="selectFlowNode('gg')" onkeydown="if(event.key==='Enter'||event.key===' ')selectFlowNode('gg')">
+        <rect x="20" y="270" width="200" height="102" rx="6" fill="#fdf2dc" stroke="#b36b00" stroke-width="1.8"></rect> <text x="34" y="292" font-family="'Geist Mono', monospace" font-size="10" font-weight="600" fill="#785008">GRANDES GERADORES (&gt;120 L)</text> <text x="34" y="313" font-family="'Source Serif 4', serif" font-size="14" font-weight="600" fill="#17181a">Padaria Pão Dourado</text> <text x="34" y="331" font-family="'Source Serif 4', serif" font-size="14" font-weight="600" fill="#17181a">Rest. Cantinho do Pastel</text> <text x="34" y="353" font-family="'Plus Jakarta Sans', sans-serif" font-size="11" fill="#56585c">PGRS próprio + secos no RECICLADF</text>
+       </g>
+       <!-- Node 3: Central de Resíduos (Bloco A) -->
+       <g class="flow-node" id="node-central-rej" tabindex="0" role="button" aria-label="Central de Resíduos Bloco A" onclick="selectFlowNode('central-rej')" onkeydown="if(event.key==='Enter'||event.key===' ')selectFlowNode('central-rej')">
+        <rect x="285" y="32" width="200" height="88" rx="6" fill="#ffffff" stroke="#17181a" stroke-width="1.5"></rect> <text x="299" y="54" font-family="'Geist Mono', monospace" font-size="10" font-weight="600" fill="#56585c">BLOCO A · ≈ 25 m²</text> <text x="299" y="75" font-family="'Source Serif 4', serif" font-size="15" font-weight="600" fill="#17181a">Central de Resíduos</text> <text x="299" y="94" font-family="'Plus Jakarta Sans', sans-serif" font-size="11.5" fill="#56585c">Contêineres 1 m³ · NBR 11174</text> <text x="299" y="110" font-family="'Geist Mono', monospace" font-size="10" fill="#b42318">Alerta NC-01 (Vetores)</text>
+       </g>
+       <!-- Node 4: Central de Recicláveis (Bloco B) -->
+       <g class="flow-node" id="node-central-rec" tabindex="0" role="button" aria-label="Central de Recicláveis Bloco B e Contêiner Vermelho" onclick="selectFlowNode('central-rec')" onkeydown="if(event.key==='Enter'||event.key===' ')selectFlowNode('central-rec')">
+        <rect x="285" y="148" width="200" height="94" rx="6" fill="#e4f0ea" stroke="#2b6e52" stroke-width="1.8"></rect> <text x="299" y="170" font-family="'Geist Mono', monospace" font-size="10" font-weight="600" fill="#2b6e52">BLOCO B · ≈ 35 m² (REF. JAN/25)</text> <text x="299" y="191" font-family="'Source Serif 4', serif" font-size="15" font-weight="600" fill="#17181a">Central de Recicláveis</text> <text x="299" y="210" font-family="'Plus Jakarta Sans', sans-serif" font-size="11.5" fill="#56585c">Contêiner UV Bl. A + 1.000 L Bl. B</text> <text x="299" y="228" font-family="'Geist Mono', monospace" font-size="10" fill="#785008">Alerta NC-02 (Limpeza 3×/sem)</text>
+       </g>
+       <!-- Node 5: Contêineres Marrons PEAD -->
+       <g class="flow-node" id="node-pead" tabindex="0" role="button" aria-label="Contêineres Marrons PEAD Individualizados" onclick="selectFlowNode('pead')" onkeydown="if(event.key==='Enter'||event.key===' ')selectFlowNode('pead')">
+        <rect x="285" y="270" width="200" height="90" rx="6" fill="#ffffff" stroke="#b36b00" stroke-width="1.5"></rect> <text x="299" y="292" font-family="'Geist Mono', monospace" font-size="10" font-weight="600" fill="#785008">IN Nº 89/2016 SLU/DF</text> <text x="299" y="313" font-family="'Source Serif 4', serif" font-size="14.5" font-weight="600" fill="#17181a">Contêineres Marrons 1 m³</text> <text x="299" y="332" font-family="'Plus Jakarta Sans', sans-serif" font-size="11.5" fill="#56585c">PEAD individualizado por CNPJ</text> <text x="299" y="349" font-family="'Geist Mono', monospace" font-size="10" fill="#56585c">Orgânicos e rejeitos isolados</text>
+       </g>
+       <!-- Node 6: Destinação Rejeitos (Ecopense -> Baru) -->
+       <g class="flow-node" id="node-aterro" tabindex="0" role="button" aria-label="Ecopense e Aterro Sanitário CGA Baru" onclick="selectFlowNode('aterro')" onkeydown="if(event.key==='Enter'||event.key===' ')selectFlowNode('aterro')">
+        <rect x="545" y="32" width="195" height="88" rx="6" fill="#e6eff2" stroke="#1f4e5f" stroke-width="1.8"></rect> <text x="559" y="54" font-family="'Geist Mono', monospace" font-size="10" font-weight="600" fill="#1f4e5f">DESTINAÇÃO FINAL (MTR/CDF)</text> <text x="559" y="75" font-family="'Source Serif 4', serif" font-size="14.5" font-weight="600" fill="#17181a">Ecopense → CGA Baru</text> <text x="559" y="94" font-family="'Plus Jakarta Sans', sans-serif" font-size="11.5" fill="#56585c">2.479 kg no 3º Trim/2026</text> <text x="559" y="110" font-family="'Geist Mono', monospace" font-size="10" fill="#1f4e5f">CDFs 738912 · 751044 · 764921</text>
+       </g>
+       <!-- Node 7: Destinação Recicláveis (Catador -> Capital) -->
+       <g class="flow-node" id="node-reciclagem" tabindex="0" role="button" aria-label="Catador Autônomo e Capital Recicláveis" onclick="selectFlowNode('reciclagem')" onkeydown="if(event.key==='Enter'||event.key===' ')selectFlowNode('reciclagem')">
+        <rect x="545" y="148" width="195" height="94" rx="6" fill="#ffffff" stroke="#2b6e52" stroke-width="1.8"></rect> <text x="559" y="170" font-family="'Geist Mono', monospace" font-size="10" font-weight="600" fill="#2b6e52">RECUPERAÇÃO E INCLUSÃO</text> <text x="559" y="191" font-family="'Source Serif 4', serif" font-size="14.5" font-weight="600" fill="#17181a">Catador → Capital Recicl.</text> <text x="559" y="210" font-family="'Plus Jakarta Sans', sans-serif" font-size="11.5" fill="#56585c">1.460 kg (486,7 kg/mês)</text> <text x="559" y="228" font-family="'Geist Mono', monospace" font-size="10" fill="#2b6e52">Tickets de pesagem conciliados</text>
+       </g>
+       <!-- Node 8: Coleta Independente GG -->
+       <g class="flow-node" id="node-coleta-gg" tabindex="0" role="button" aria-label="Contratos Próprios dos Grandes Geradores" onclick="selectFlowNode('coleta-gg')" onkeydown="if(event.key==='Enter'||event.key===' ')selectFlowNode('coleta-gg')">
+        <rect x="545" y="270" width="195" height="90" rx="6" fill="#ffffff" stroke="#b36b00" stroke-width="1.5"></rect> <text x="559" y="292" font-family="'Geist Mono', monospace" font-size="10" font-weight="600" fill="#785008">GESTÃO AUTÔNOMA</text> <text x="559" y="313" font-family="'Source Serif 4', serif" font-size="14.5" font-weight="600" fill="#17181a">Contratos Próprios GG</text> <text x="559" y="332" font-family="'Plus Jakarta Sans', sans-serif" font-size="11.5" fill="#56585c">Decreto DF 37.568/2016 Arts. 3/11</text> <text x="559" y="349" font-family="'Geist Mono', monospace" font-size="10" fill="#56585c">Guarda de PGRS e MTRs</text>
+       </g>
+      </svg>
+     </div>
+     <!-- Inspector Panel -->
+     <aside class="inspector-card" id="flow-inspector" aria-live="polite">
+      <div>
+       <span class="tag tag-slate" id="insp-badge">ORIGEM CENTRALIZADA</span>
+       <h3 class="panel-title" style="margin-top: var(--space-xs);" id="insp-title">49 Unidades Autônomas + Áreas Comuns</h3>
+       <p class="panel-caption" id="insp-sub">Gestão centralizada MS Satélite / Tok Ambiental (Blocos A e B)</p>
+      </div>
+      <p id="insp-desc" style="margin: 0; font-size: 0.9rem;">Das 51 unidades ocupadas em 31/10/2026 (de 60 totais: 40 lojas e 20 salas), 49 utilizam a estrutura centralizada do Villa Mall, além das áreas de circulação, sanitários e administrativas.</p>
+      <ul class="inspector-list" id="insp-bullets"><li>Geração média de indiferenciados: 77,00 L/dia (26,95 kg/dia ou 1,57 L/dia/unidade).</li><li>Fração predominante: papelão ondulado, papel, plástico e alumínio.</li><li>Adesão voluntária ao Art. 21 da Lei nº 12.305/2010 com emissão de MTR eletrônico.</li></ul>
+     </aside>
+    </div>
+   </section>
+   <!-- 5. MATRIZ DE GOVERNANÇA DAS NÃO CONFORMIDADES (NC-01 A NC-04) -->
+   <section aria-label="Matriz de governança das Não Conformidades">
+    <div class="panel-header" style="border-bottom: var(--section-rule);">
+     <div>
+      <span class="index-num">05</span>
+      <h2 class="panel-title" style="display:inline-block; margin-left: var(--space-xs);">Matriz de Governança das Não Conformidades (NC-01 a NC-04)</h2>
+      <p class="panel-caption">Quadro 32 &amp; Quadro 23 · Rastreamento auditável de ações corretivas (reabertura automática se verificação de eficácia pelo RT falhar)</p>
+     </div>
+     <div class="month-pills" role="group" aria-label="Filtrar não conformidades por criticidade">
+      <button type="button" class="month-btn active" id="nc-filter-all" onclick="filterNC('all')">Todas (4)</button> <button type="button" class="month-btn" id="nc-filter-critica" onclick="filterNC('Crítica')">Crítica (1)</button> <button type="button" class="month-btn" id="nc-filter-maior" onclick="filterNC('Maior')">Maior (3)</button>
+     </div>
+    </div>
+    <div class="table-wrap">
+     <table>
+      <thead>
+       <tr>
+        <th>Código</th>
+        <th>Classificação</th>
+        <th>Descrição da Não Conformidade</th>
+        <th>Ação Corretiva &amp; Norma</th>
+        <th>Responsável &amp; Prazo</th>
+        <th>Status Operacional</th>
+       </tr>
+      </thead>
+      <tbody id="nc-table-body">
+          <tr>
+            <td><strong style="font-family: var(--font-label);">NC-01</strong></td>
+            <td><span class="tag tag-error">Crítica</span></td>
+            <td>Presença de vetores (ratos, baratas, escorpiões) na Central de Resíduos e relatos de lojistas sobre pragas no interior das lojas.</td>
+            <td>Implementar contrato anual de controle de pragas (NBR 15584) e higienização reforçada.</td>
+            <td>Administração MS Satélite / RT do PGRS · Imediato</td>
+            <td>
+              <select class="status-select" aria-label="Status operacional de NC-01" onchange="changeNCStatus('NC-01', this.value)">
+                <option value="Em Aberto">Em Aberto</option>
+                <option value="Em Execução" selected="">Em Execução</option>
+                <option value="Concluída">Concluída (RT Validou)</option>
+              </select>
+            </td>
+          </tr>
+        
+          <tr>
+            <td><strong style="font-family: var(--font-label);">NC-02</strong></td>
+            <td><span class="tag tag-amber">Maior</span></td>
+            <td>Limpeza irregular da Central de Recicláveis e dos contêineres de armazenamento temporário.</td>
+            <td>Cumprir rotina de limpeza 3×/semana e higienização dos contêineres 2×/mês com check-list (sem custo adicional).</td>
+            <td>Supera Conservação / Gestor · Imediato</td>
+            <td>
+              <select class="status-select" aria-label="Status operacional de NC-02" onchange="changeNCStatus('NC-02', this.value)">
+                <option value="Em Aberto">Em Aberto</option>
+                <option value="Em Execução" selected="">Em Execução</option>
+                <option value="Concluída">Concluída (RT Validou)</option>
+              </select>
+            </td>
+          </tr>
+        
+          <tr>
+            <td><strong style="font-family: var(--font-label);">NC-03</strong></td>
+            <td><span class="tag tag-amber">Maior</span></td>
+            <td>Ausência de formalização de acordos e coletores de logística reversa (lâmpadas, pilhas, baterias, eletrônicos, óleo vegetal).</td>
+            <td>Formalizar adesão aos sistemas gratuitos (ex.: Reciclus, CONAMA nº 401/2008) e comunicar lojistas.</td>
+            <td>Administração / RT do PGRS · Até Jun/2027</td>
+            <td>
+              <select class="status-select" aria-label="Status operacional de NC-03" onchange="changeNCStatus('NC-03', this.value)">
+                <option value="Em Aberto" selected="">Em Aberto</option>
+                <option value="Em Execução">Em Execução</option>
+                <option value="Concluída">Concluída (RT Validou)</option>
+              </select>
+            </td>
+          </tr>
+        
+          <tr>
+            <td><strong style="font-family: var(--font-label);">NC-04</strong></td>
+            <td><span class="tag tag-amber">Maior</span></td>
+            <td>Descarte de recicláveis no fluxo comum destinado ao aterro sanitário (refletido na queda de desvio para 28,16% em Ago/2026).</td>
+            <td>Medição por amostragem do rejeito, programa de segregação na fonte e treinamento de 100% das unidades ativas.</td>
+            <td>RT do PGRS (c/ aprovação Administração) · 6 meses / Dez/2027</td>
+            <td>
+              <select class="status-select" aria-label="Status operacional de NC-04" onchange="changeNCStatus('NC-04', this.value)">
+                <option value="Em Aberto" selected="">Em Aberto</option>
+                <option value="Em Execução">Em Execução</option>
+                <option value="Concluída">Concluída (RT Validou)</option>
+              </select>
+            </td>
+          </tr>
+        </tbody>
+     </table>
+    </div>
+   </section>
+   <!-- 6. ROTEIRO DE PROTOCOLO PARA BAIXA CADASTRAL EM JANEIRO/2027 -->
+   <section aria-label="Roteiro rumo ao protocolo de baixa cadastral em janeiro de 2027">
+    <div class="panel-header" style="border-bottom: var(--section-rule);">
+     <div>
+      <span class="index-num">06</span>
+      <h2 class="panel-title" style="display:inline-block; margin-left: var(--space-xs);">Roteiro Rumo ao Protocolo de Baixa Cadastral (SLU/DF — Janeiro/2027)</h2>
+      <p class="panel-caption">Anexo I (ART) e Seções 14–16 · Desenquadramento do Registro de Grande Gerador nº 007411 (vencido em 25/08/2025)</p>
+     </div>
+    </div>
+    <div class="roadmap-grid" id="roadmap-grid">
+          <article class="milestone-card completed">
+            <div class="kpi-head">
+              <span class="kpi-label">OUT–NOV / 2026</span>
+              <span class="tag tag-pine">Concluído</span>
+            </div>
+            <label class="milestone-check">
+              <input type="checkbox" checked="" onchange="toggleMilestone('ms-1', this.checked)">
+              <span>Revisão 01 do PGRS &amp; Auditoria 3º Trim</span>
+            </label>
+            <p class="kpi-sub" style="margin: 0;">Consolidação da DMR nº 732717 (77,00 L/dia), CDFs 738912, 751044 e 764921 e diagnóstico NC-01 a NC-04 (06/11/2026).</p>
+          </article>
+        
+          <article class="milestone-card next">
+            <div class="kpi-head">
+              <span class="kpi-label">JANEIRO / 2027</span>
+              <span class="tag tag-amber">Próximo Passo</span>
+            </div>
+            <label class="milestone-check">
+              <input type="checkbox" onchange="toggleMilestone('ms-2', this.checked)">
+              <span>DMR 4º Trim/2026 (SINIR) + Emissão de ART</span>
+            </label>
+            <p class="kpi-sub" style="margin: 0;">Fechamento do 2º semestre (incluindo sazonalidade de fim de ano) e emissão da ART pelo RT Jorge Alexandre Silva (CRQ-12 12201553).</p>
+          </article>
+        
+          <article class="milestone-card next">
+            <div class="kpi-head">
+              <span class="kpi-label">JAN–FEV / 2027</span>
+              <span class="tag tag-amber">Próximo Passo</span>
+            </div>
+            <label class="milestone-check">
+              <input type="checkbox" onchange="toggleMilestone('ms-3', this.checked)">
+              <span>Protocolo de Baixa Cadastral no SLU/DF</span>
+            </label>
+            <p class="kpi-sub" style="margin: 0;">Petição formal de desenquadramento do Registro de Grande Gerador nº 007411, mantendo compliance voluntário MTR/CDF por 5 anos.</p>
+          </article>
+        
+          <article class="milestone-card ">
+            <div class="kpi-head">
+              <span class="kpi-label">JUN–DEZ / 2027</span>
+              <span class="tag tag-slate">Planejado</span>
+            </div>
+            <label class="milestone-check">
+              <input type="checkbox" onchange="toggleMilestone('ms-4', this.checked)">
+              <span>Logística Reversa e Meta ≥ 500 kg/mês</span>
+            </label>
+            <p class="kpi-sub" style="margin: 0;">Coletores Classe I ativos até Jun/2027 (NC-03) e média móvel trimestral ≥ 500 kg/mês de recicláveis desviados até Dez/2027 (NC-04).</p>
+          </article>
+        </div>
+   </section>
+   <!-- RODAPÉ DE FONTES -->
+   <footer class="footer-note">
+    <div>
+     <strong>Fonte primária:</strong> Atualização do Plano de Gerenciamento de Resíduos Sólidos (PGRS) — Edifício Villa Mall, Revisão 01 (Novembro/2026), elaborado por Jorge Alexandre Francisco da Silva (CRQ-12 nº 12201553) em conformidade com ABNT NBR 17100-1:2023, Lei Federal nº 12.305/2010, Lei Distrital nº 5.610/2016 e Decreto Distrital nº 37.568/2016.
+    </div>
+    <div>
+     <strong>Custódia Digital:</strong> Repositório MS Satélite / Tok Ambiental (5 anos) · DMR nº 732717 · CDFs nº 738912, 751044, 764921.
+    </div>
+   </footer>
+  </main>
+  <script data-api-capabilities="CgoBGQQICg4CAwYH">(function(){'use strict';/*
+
+ Copyright The Closure Library Authors.
+ SPDX-License-Identifier: Apache-2.0
+*/
+var aa=this||self;function ba(a){var b=typeof a;return b!="object"?b:a?Array.isArray(a)?"array":b:"null"}function ca(a){return a};function da(a){aa.setTimeout(()=>{throw a;},0)};var ea,fa;a:{for(var ha=["CLOSURE_FLAGS"],ia=aa,ja=0;ja<ha.length;ja++)if(ia=ia[ha[ja]],ia==null){fa=null;break a}fa=ia}var ka=fa&&fa[748402147];ea=ka!=null?ka:!0;var la=/[-_.]/g,ma={"-":"+",_:"/",".":"="};function na(a){return ma[a]||""}function oa(a){a=la.test(a)?a.replace(la,na):a;a=atob(a);var b=new Uint8Array(a.length);for(let c=0;c<a.length;c++)b[c]=a.charCodeAt(c);return b}var k={};var u=class{constructor(a,b){pa(b);this.h=a;if(a!=null&&a.length===0)throw Error("ByteString should be constructed with non-empty values");}},qa;function pa(a){if(a!==k)throw Error("illegal external caller");};function ra(a,b){a.__closure__error__context__984382||(a.__closure__error__context__984382={});a.__closure__error__context__984382.severity=b};var sa=void 0;function ta(a){a=Error(a);ra(a,"warning");return a}function ua(a,b){if(a!=null){var c=sa??={};var d=c[a]||0;d>=b||(c[a]=d+1,a=Error(),ra(a,"incident"),da(a))}};function v(a,b=!1){return b&&Symbol.for&&a?Symbol.for(a):a!=null?Symbol(a):Symbol()}var va=v(),wa=v(),xa=v(),ya=v(),za=v(),Aa=v("m_m",!0);var w=v("jas",!0),x,Ba=[];Ba[w]=7;x=Object.freeze(Ba);function y(a){a[w]|=34;return a}function Ca(a){a[w]|=8192;return a}function Da(a){a[w]|=32;return a}function Ea(a,b){2&b&&(a|=2);return a|1};var Fa={};function z(a){return a!=null&&a[Aa]===Fa}function A(a,b){return b===void 0?a.h!==D&&!!(2&(a.j[w]|0)):!!(2&b)&&a.h!==D}var D={};class Ga{constructor(a,b,c){this.h=a;this.i=b;this.l=c}next(){var a=this.h.next();a.done||(a.value=this.i.call(this.l,a.value));return a}[Symbol.iterator](){return this}}Object.freeze({});
+function Ha(a,b,c){var d=b&128?0:-1,e=a.length,f;if(f=!!e)f=a[e-1],f=f!=null&&typeof f==="object"&&f.constructor===Object;var g=e+(f?-1:0);for(b=b&128?1:0;b<g;b++)c(b-d,a[b]);if(f){a=a[e-1];for(let h in a)!isNaN(h)&&c(+h,a[h])}}var Ia={};function Ja(a){a.ca=!0;return a};var Ka=Ja(a=>typeof a==="number"),La=Ja(a=>typeof a==="string");function E(a){if(La(a)){if(!/^\s*(?:-?[1-9]\d*|0)?\s*$/.test(a))throw Error(String(a));}else if(Ka(a)&&!Number.isSafeInteger(a))throw Error(String(a));return BigInt(a)}var Oa=Ja(a=>a>=Ma&&a<=Na),Ma=BigInt(Number.MIN_SAFE_INTEGER),Na=BigInt(Number.MAX_SAFE_INTEGER);var I=0,J=0;function Pa(a){var b=a>>>0;I=b;J=(a-b)/4294967296>>>0}function Qa(a){if(a<0){Pa(-a);a=I;var b=J;b=~b;a?a=~a+1:b+=1;let [c,d]=[a,b];I=c>>>0;J=d>>>0}else Pa(a)}function Ra(a,b){b>>>=0;a>>>=0;var c;b<=2097151?c=""+(4294967296*b+a):c=""+(BigInt(b)<<BigInt(32)|BigInt(a));return c}function Sa(){var a=I,b=J,c;b&2147483648?c=""+(BigInt(b|0)<<BigInt(32)|BigInt(a>>>0)):c=Ra(a,b);return c};var Ta=typeof BigInt==="function"?BigInt.asIntN:void 0,K=Number.isSafeInteger,Ua=Number.isFinite,Va=Math.trunc;function Wa(a){if(a==null||typeof a==="number")return a;if(a==="NaN"||a==="Infinity"||a==="-Infinity")return Number(a)}var Xa=/^-?([1-9][0-9]*|0)(\.[0-9]+)?$/;function Ya(a){switch(typeof a){case "bigint":return!0;case "number":return Ua(a);case "string":return Xa.test(a);default:return!1}}function Za(a){if(a!=null){if(!Ua(a))throw ta("enum");a|=0}return a}
+function $a(a){return a==null?a:Ua(a)?a|0:void 0}function ab(a){if(a!=null){if(typeof a!=="number")throw ta("int32");if(!Ua(a))throw ta("int32");a|=0}return a}function bb(a){if(a==null)return a;if(typeof a==="string"&&a)a=+a;else if(typeof a!=="number")return;return Ua(a)?a|0:void 0}function cb(a){a=Va(a);K(a)?a=String(a):(Qa(a),a=Sa());return a}function db(a){var b=Va(Number(a));if(K(b))return E(b);b=a.indexOf(".");b!==-1&&(a=a.substring(0,b));return E(Ta(64,BigInt(a)))}
+function eb(a){var b=typeof a;if(a==null)return a;if(b==="bigint")return E(Ta(64,a));if(Ya(a))return b==="string"?db(a):E(K(a)?a:cb(a))}function fb(a){return a==null||typeof a==="string"?a:void 0}function gb(a,b,c,d){if(z(a))return a;if(!Array.isArray(a))return c?d&2?b[va]||(b[va]=hb(b)):new b:void 0;c=a[w]|0;d=c|d&32|d&2;d!==c&&(a[w]=d);return new b(a)}function hb(a){a=new a;y(a.j);return a}function ib(a,b,c){if(b){if(typeof a!=="string")throw Error();}else a=fb(a)??(c?"":void 0);return a};function jb(a){return a};var kb={},lb=(()=>class extends Map{constructor(){super()}})();function mb(a){return a}function nb(a){if(a.v&2)throw Error("Cannot mutate an immutable Map");}
+var L=class extends lb{constructor(a,b,c=mb,d=mb){super();this.v=a[w]|0;this.u=b;this.G=c;this.S=this.u?ob:d;for(let e=0;e<a.length;e++){let f=a[e],g=c(f[0],!1,!0),h=f[1];b?h===void 0&&(h=null):h=d(f[1],!1,!0,void 0,void 0,this.v);super.set(g,h)}}L(a){return Ca(Array.from(super.entries(),a))}clear(){nb(this);super.clear()}delete(a){nb(this);return super.delete(this.G(a,!0,!1))}entries(){if(this.u){var a=super.keys();a=new Ga(a,pb,this)}else a=super.entries();return a}values(){if(this.u){var a=super.keys();
+a=new Ga(a,L.prototype.get,this)}else a=super.values();return a}forEach(a,b){this.u?super.forEach((c,d,e)=>{a.call(b,e.get(d),d,e)}):super.forEach(a,b)}set(a,b){nb(this);a=this.G(a,!0,!1);return a==null?this:b==null?(super.delete(a),this):super.set(a,this.S(b,!0,!0,this.u,!1,this.v))}has(a){return super.has(this.G(a,!1,!1))}get(a){a=this.G(a,!1,!1);var b=super.get(a);if(b!==void 0){var c=this.u;return c?(c=this.S(b,!1,!0,c,this.V,this.v),c!==b&&super.set(a,c),c):b}}[Symbol.iterator](){return this.entries()}};
+L.prototype.toJSON=void 0;function ob(a,b,c,d,e,f){a=gb(a,d,c,f);e&&(a=qb(a));return a}function pb(a){return[a,this.get(a)]}var rb;function sb(){return rb||=new L(y([]),void 0,void 0,void 0,kb)};function tb(a){var b=ca(xa);return b?a[b]:void 0}function ub(a,b){for(let c in a)!isNaN(c)&&b(a,+c,a[c])}function vb(a){var b=new wb;ub(a,(c,d,e)=>{b[d]=[...e]});b.h=a.h;return b}var wb=class{};function xb(a,b){b<100||ua(ya,1)};function yb(a,b,c,d){var e=d!==void 0;d=!!d;var f=ca(xa),g;!e&&f&&(g=a[f])&&ub(g,xb);f=[];var h=a.length;g=4294967295;var m=!1,n=!!(b&64),l=n?b&128?0:-1:void 0;if(!(b&1)){var p=h&&a[h-1];p!=null&&typeof p==="object"&&p.constructor===Object?(h--,g=h):p=void 0;!n||b&128||e||(m=!0,g=(zb??jb)(g-l,l,a,p,void 0)+l)}b=void 0;for(var r=0;r<h;r++){let q=a[r];if(q!=null&&(q=c(q,d))!=null)if(n&&r>=g){let t=r-l;(b??={})[t]=q}else f[r]=q}if(p)for(let q in p){h=p[q];if(h==null||(h=c(h,d))==null)continue;r=+q;let t;
+n&&!Number.isNaN(r)&&(t=r+l)<g?f[t]=h:(b??={})[q]=h}b&&(m?f.push(b):f[g]=b);e&&(c=ca(xa))&&(a=tb(a))&&a instanceof wb&&(f[c]=vb(a));return f}function Ab(a){a[0]=Bb(a[0]);a[1]=Bb(a[1]);return a}
+function Bb(a){switch(typeof a){case "number":return Number.isFinite(a)?a:""+a;case "bigint":return Oa(a)?Number(a):""+a;case "boolean":return a?1:0;case "object":if(Array.isArray(a)){var b=a[w]|0;return a.length===0&&b&1?void 0:yb(a,b,Bb)}if(z(a))return Cb(a);if(a instanceof u){b=a.h;if(b==null)a="";else if(typeof b==="string")a=b;else{let c="",d=0,e=b.length-10240;for(;d<e;)c+=String.fromCharCode.apply(null,b.subarray(d,d+=10240));c+=String.fromCharCode.apply(null,d?b.subarray(d):b);b=btoa(c);a=
+a.h=b}return a}if(a instanceof L)return a=a.size!==0?a.L(Ab):void 0,a;return}return a}var zb;function Cb(a){a=a.j;return yb(a,a[w]|0,Bb)};var Db,Eb;function Fb(a){switch(typeof a){case "boolean":return Db||=[0,void 0,!0];case "number":return a>0?void 0:a===0?Eb||=[0,void 0]:[-a,void 0];case "string":return[0,a];case "object":return a}}function Gb(a,b){return Hb(a,b[0],b[1])}
+function Hb(a,b,c,d=0){if(a==null){var e=32;c?(a=[c],e|=128):a=[];b&&(e=e&-16760833|(b&1023)<<14)}else{if(!Array.isArray(a))throw Error("narr");e=a[w]|0;if(ea&&1&e)throw Error("rfarr");2048&e&&!(2&e)&&Ib();if(e&256)throw Error("farr");if(e&64)return(e|d)!==e&&(a[w]=e|d),a;if(c&&(e|=128,c!==a[0]))throw Error("mid");a:{c=a;e|=64;var f=c.length;if(f){var g=f-1;let m=c[g];if(m!=null&&typeof m==="object"&&m.constructor===Object){b=e&128?0:-1;g-=b;if(g>=1024)throw Error("pvtlmt");for(var h in m)if(f=+h,
+f<g)c[f+b]=m[h],delete m[h];else break;e=e&-16760833|(g&1023)<<14;break a}}if(b){h=Math.max(b,f-(e&128?0:-1));if(h>1024)throw Error("spvt");e=e&-16760833|(h&1023)<<14}}}a[w]=e|64|d;return a}function Ib(){if(ea)throw Error("carr");ua(za,5)};function Jb(a,b){if(typeof a!=="object")return a;if(Array.isArray(a)){var c=a[w]|0;return a.length===0&&c&1?void 0:Kb(a,c,b)}if(z(a))return Lb(a);if(a instanceof L){b=a.v;if(b&2)return a;if(!a.size)return;c=y(a.L());if(a.u)for(a=0;a<c.length;a++){let d=c[a],e=d[1];e==null||typeof e!=="object"?e=void 0:z(e)?e=Lb(e):Array.isArray(e)?e=Kb(e,e[w]|0,!!(b&32)):e=void 0;d[1]=e}return c}if(a instanceof u)return a}
+function Kb(a,b,c){if(b&2)return a;!c||4096&b||16&b?a=Mb(a,b,!1,c&&!(b&16)):(a[w]|=34,b&4&&Object.freeze(a));return a}function Nb(a,b,c){a=new a.constructor(b);c&&(a.h=D);a.l=D;return a}function Lb(a){var b=a.j,c=b[w]|0;return A(a,c)?a:Ob(a,b,c)?Nb(a,b):Mb(b,c)}function Mb(a,b,c,d){d??=!!(34&b);a=yb(a,b,Jb,d);d=32;c&&(d|=2);b=b&16769217|d;a[w]=b;return a}function qb(a){var b=a.j,c=b[w]|0;if(A(a,c)){var d;Ob(a,b,c)?d=Nb(a,b,!0):d=new a.constructor(Mb(b,c,!1));a=d}return a}
+function Pb(a){if(a.h!==D)return!1;var b=a.j;b=Mb(b,b[w]|0);b[w]|=2048;a.j=b;a.h=void 0;a.l=void 0;return!0}function Qb(a){if(!Pb(a)&&A(a,a.j[w]|0))throw Error();}function M(a,b){b===void 0&&(b=a[w]|0);b&32&&!(b&4096)&&(a[w]=b|4096)}function Ob(a,b,c){return c&2?!0:c&32&&!(c&4096)?(b[w]=c|2,a.h=D,!0):!1};function N(a,b,c,d){a=O(a.j,b,c,d);if(a!==null)return a}function Rb(a,b,c){return O(a,b,void 0,c)}function O(a,b,c,d){if(b===-1)return null;var e=b+(c?0:-1),f=a.length-1;if(!(f<1+(c?0:-1))){if(e>=f){var g=a[f];if(g!=null&&typeof g==="object"&&g.constructor===Object){c=g[b];var h=!0}else if(e===f)c=g;else return}else c=a[e];if(d&&c!=null){d=d(c);if(d==null)return d;if(!Object.is(d,c))return h?g[b]=d:a[e]=d,d}return c}}function Sb(a,b,c){Qb(a);a=a.j;P(a,a[w]|0,b,c)}
+function P(a,b,c,d,e){var f=c+(e?0:-1),g=a.length-1;if(g>=1+(e?0:-1)&&f>=g){let h=a[g];if(h!=null&&typeof h==="object"&&h.constructor===Object)return h[c]=d,b}if(f<=g)return a[f]=d,b;d!==void 0&&(g=(b??=a[w]|0)>>14&1023||536870912,c>=g?d!=null&&(a[g+(e?0:-1)]={[c]:d}):a[f]=d);return b}function Tb(a){a=O(a.j,2);return z(a)||Array.isArray(a)}
+function Ub(a,b,c,d,e,f,g,h){var m=b,n=Vb(b);n&&f===2&&(a=[...a],m=0,b=Wb(b,d),d=P(c,d,e,a),n=!1);n||(f===1||(f!==4?0:2&b||!(16&b)&&32&d)?(b|=!a.length||g&&!(4096&b)||32&d&&!(4096&b||16&b)?2:256,b!==m&&(a[w]=b),Object.freeze(a)):(h||(b|=16),b!==m&&(a[w]=b)));2&b||!(4096&b||16&b)||M(c,d);return a}function Xb(a,b,c){a=O(a,b,c);return Array.isArray(a)?a:x}function Vb(a){return!!(2&a)&&!!(4&a)||!!(256&a)}
+function Yb(a){var b=Zb;var c=a.j;var d=c[w]|0;var e=A(a,d);a:{!e&&Pb(a)&&(c=a.j,d=c[w]|0);var f=O(c,1);a=!1;if(f==null){if(e){c=sb();break a}f=[]}else if(f.constructor===L)if(f.v&2&&!e)f=f.L();else{c=f;break a}else Array.isArray(f)?a=!!((f[w]|0)&2):f=[];if(e){if(!f.length){c=sb();break a}a||(a=!0,y(f))}else if(a){a=!1;Ca(f);f=[...f];for(let g=0;g<f.length;g++){let h=f[g]=[...f[g]];Array.isArray(h[1])&&(h[1]=y(h[1]))}f=Ca(f)}!a&&d&32&&Da(f);f=new L(f,b,ib,void 0);d=P(c,d,1,f);a||M(c,d);c=f}!e&&b&&
+(c.V=!0);return c}function Q(a,b,c,d){Qb(a);var e=a.j;P(e,e[w]|0,b,(d==="0"?Number(c)===0:c===d)?void 0:c);return a}function $b(a,b,c,d){Qb(a);var e=a.j,f=e[w]|0;if(d==null){var g=ac(e);if(bc(g,e,f,c)===b)g.set(c,0);else return a}else{g=ac(e);let h=bc(g,e,f,c);h!==b&&(h&&(f=P(e,f,h)),g.set(c,b))}P(e,f,b,d);return a}function R(a,b,c){return cc(a.j,b)===c?c:-1}function cc(a,b){return bc(ac(a),a,void 0,b)}function ac(a){return a[wa]??(a[wa]=new Map)}
+function bc(a,b,c,d){var e=a.get(d);if(e!=null)return e;e=0;for(let f=0;f<d.length;f++){let g=d[f];O(b,g)!=null&&(e!==0&&(c=P(b,c,e)),e=g)}a.set(d,e);return e}function dc(a,b,c){var d=a[w]|0,e=d&128?Ia:void 0,f=O(a,c,e);if(z(f)){if(!A(f))return Pb(f),f.j;var g=f.j}else Array.isArray(f)&&(g=f,d&2&&y(g));if(g){let h=g[w]|0;h&2&&(g=Mb(g,h))}g=Gb(g,b);g!==f&&P(a,d,c,g,e);return g}
+function ec(a,b,c,d){var e=!1;d=Rb(a,d,f=>{var g=gb(f,c,!1,b);e=g!==f&&g!=null;return g});if(d!=null)return e&&!A(d)&&M(a,b),d}function fc(a){var b=hc;a=a.j;return ec(a,a[w]|0,b,2)||b[va]||(b[va]=hb(b))}function ic(a,b,c){var d=a.j,e=d[w]|0;b=ec(d,e,b,c);if(b==null)return b;e=d[w]|0;if(!A(a,e)){let f=qb(b);f!==b&&(Pb(a)&&(d=a.j,e=d[w]|0),b=f,e=P(d,e,c,b),M(d,e))}return b}
+function jc(a,b,c,d,e,f,g,h){f=f&&f!==4?f!==1&&(a?A(a,c):2&c)?1:f:4;g=!!g||f===3;var m=!!h&&!(a?A(a,c):2&c);(f===2||m)&&a&&Pb(a)&&(b=a.j,c=b[w]|0);a=Xb(b,e);var n=a===x?7:a[w]|0,l=Ea(n,c);if(h=!(4&l)){var p=a,r=c;let q=!!(2&l);q&&(r|=2);let t=!q,F=!0,B=0,C=0;for(;B<p.length;B++){let G=gb(p[B],d,!1,r);if(G instanceof d){if(!q){let H=A(G);t&&=!H;F&&=H}p[C++]=G}}C<B&&(p.length=C);l|=4;l=F?l&-4097:l|4096;l=t?l|8:l&-9}l!==n&&(a[w]=l,2&l&&Object.freeze(a));if(m&&!(8&l||!a.length&&(f===1||(f!==4?0:2&l||
+!(16&l)&&32&c)))){Vb(l)&&(a=[...a],l=Wb(l,c),c=P(b,c,e,a));d=a;m=l;for(n=0;n<d.length;n++)p=d[n],l=qb(p),p!==l&&(d[n]=l);m|=8;l=m=d.length?m|4096:m&-4097;a[w]=l}return a=Ub(a,l,b,c,e,f,h,g)}function kc(a,b,c){var d=a.j;return jc(a,d,d[w]|0,b,c,void 0,!1,!0)}function lc(a){a==null&&(a=void 0);return a}function mc(a,b,c){c=lc(c);Sb(a,b,c);c&&!A(c)&&M(a.j);return a}function nc(a,b,c){var d=S;c=lc(c);$b(a,b,d,c);c&&!A(c)&&M(a.j);return a}function Wb(a,b){return a=(2&b?a|2:a&-3)&-273}
+function oc(a,b,c,d,e,f){Qb(a);var g=a.j;a=jc(a,g,g[w]|0,c,b,2,!0);if(f){if(typeof e!=="number"||e<0||e>a.length)throw Error();}else d=d!=null?d:new c;e!=void 0?a.splice(e,f,d):a.push(d);e=c=a===x?7:a[w]|0;(d=A(d))?(c&=-9,a.length===1&&(c&=-4097)):c|=4096;c!==e&&(a[w]=c);d||M(g)};var T=class{constructor(a,b,c){this.buffer=a;if(c&&!b)throw Error();this.h=b}};
+function pc(a,b){if(typeof a==="string")return new T(oa(a),b);if(Array.isArray(a))return new T(new Uint8Array(a),b);if(a.constructor===Uint8Array)return new T(a,!1);if(a.constructor===ArrayBuffer)return a=new Uint8Array(a),new T(a,!1);if(a.constructor===u)return pa(k),b=a.h,b=b==null||b!=null&&b instanceof Uint8Array?b:typeof b==="string"?oa(b):null,b=(b==null?b:a.h=b)||new Uint8Array(0),new T(b,!0,a);if(a instanceof Uint8Array)return a=a.constructor===Uint8Array?a:new Uint8Array(a.buffer,a.byteOffset,
+a.byteLength),new T(a,!1);throw Error();};function U(a){var b=a.l,c=a.h,d=b[c++],e=d&127;if(d&128&&(d=b[c++],e|=(d&127)<<7,d&128&&(d=b[c++],e|=(d&127)<<14,d&128&&(d=b[c++],e|=(d&127)<<21,d&128&&(d=b[c++],e|=d<<28,d&128&&b[c++]&128&&b[c++]&128&&b[c++]&128&&b[c++]&128&&b[c++]&128)))))throw Error();qc(a,c);return e}function qc(a,b){a.h=b;if(b>a.i)throw Error();}
+var rc=class{constructor(a,b,c,d){this.l=null;this.o=!1;this.h=this.i=this.m=0;this.init(a,b,c,d)}init(a,b,c,{J:d=!1,M:e=!1}={}){this.J=d;this.M=e;a&&(a=pc(a,this.M),this.l=a.buffer,this.o=a.h,this.m=b||0,this.i=c!==void 0?this.m+c:this.l.length,this.h=this.m)}clear(){this.l=null;this.o=!1;this.h=this.i=this.m=0;this.J=!1}},sc=[];var V=0;function tc(a,b,c,d){if(uc.length){let e=uc.pop();vc(e,d);e.h.init(a,b,c,d);return e}return new wc(a,b,c,d)}function vc(a,{N:b=!1}={}){a.N=b}function xc(a){a.h.clear();a.l=-1;a.i=-1;uc.length<100&&uc.push(a)}function yc(a){var b=a.h;if(b.h==b.i)return!1;a.m=a.h.h;var c=U(a.h)>>>0;b=c>>>3;c&=7;if(!(c>=0&&c<=5))throw Error();if(b<1)throw Error();a.l=b;a.i=c;return!0}
+function zc(a){try{switch(a.i){case 0:if(a.i!=0)zc(a);else a:{var b=a.h;let h=b.h;a=h+10;let m=b.l;for(;h<a;)if((m[h++]&128)===0){qc(b,h);break a}throw Error();}break;case 1:var c=a.h;qc(c,c.h+8);break;case 2:if(a.i!=2)zc(a);else{var d=U(a.h)>>>0,e=a.h;qc(e,e.h+d)}break;case 5:var f=a.h;qc(f,f.h+4);break;case 3:Ac();let g=a.l;try{do{if(!yc(a))throw Error();if(a.i==4){if(a.l!=g)throw Error();break}zc(a)}while(1)}catch(h){if(h instanceof RangeError)throw new SyntaxError;throw h;}finally{V>0&&V--}break;
+default:throw Error();}}catch(g){if(g instanceof RangeError)throw new SyntaxError;throw g;}}function Ac(){if(V>=100)throw new SyntaxError;V++}function Bc(a,b,c){var d=a.h.i,e=U(a.h)>>>0;e=a.h.h+e;var f=e-d;f<=0&&(a.h.i=e,c(b,a,void 0,void 0,void 0),f=e-a.h.h);if(f)throw Error();a.h.h=e;a.h.i=d}var wc=class{constructor(a,b,c,d){if(sc.length){let e=sc.pop();e.init(a,b,c,d);a=e}else a=new rc(a,b,c,d);this.h=a;this.m=this.h.h;this.i=this.l=-1;vc(this,d)}},uc=[];function Cc(){var a=class{constructor(){throw Error();}};Object.setPrototypeOf(a,a.prototype);return a}var Dc=Cc(),Ec=Cc();function Fc(a){return JSON.stringify(Cb(a))}var W=class{constructor(a){this.j=Hb(a,void 0,void 0,2048)}toJSON(){return Cb(this)}};W.prototype[Aa]=Fa;W.prototype.toString=function(){return this.j.toString()};var Gc=class{constructor(a,b){this.h=a;a=ca(Dc);this.i=!!a&&b===a||!1}},Hc=new Gc(function(a,b,c,d,e){if(a.i!==2)return!1;Bc(a,dc(b,d,c),e);return!0},Dc),Ic=new Gc(function(a,b,c,d,e){if(a.i!==2)return!1;Bc(a,dc(b,d,c),e);return!0},Dc),Jc=Symbol(),Kc=Symbol(),Lc=Symbol(),Mc,Nc;
+function Oc(a){var b=Pc,c=Qc,d=a[Jc];if(d)return d;d={};d.U=a;d.K=Fb(a[0]);var e=a[1],f=1;e&&e.constructor===Object&&(d.O=e,e=a[++f],typeof e==="function"&&e.length>0&&(d.Z=!0,Mc??=e,Nc??=a[f+1],e=a[f+=2]));for(var g={};e&&Array.isArray(e)&&e.length&&typeof e[0]==="number"&&e[0]>0;){for(var h=0;h<e.length;h++)g[e[h]]=e;e=a[++f]}for(h=1;e!==void 0;){typeof e==="number"&&(h+=e,e=a[++f]);let l;var m=void 0;e instanceof Gc?l=e:(l=Hc,f--);if(l?.i){e=a[++f];m=a;var n=f;typeof e==="function"&&(e=e(),m[n]=
+e);m=e}e=a[++f];n=h+1;typeof e==="number"&&e<0&&(n-=e,e=a[++f]);for(;h<n;h++){let p=g[h];m?c(d,h,l,m,p):b(d,h,l,p)}}return a[Jc]=d};function Pc(a,b,c,d){var e=c.h;a[b]=d?(f,g,h)=>e(f,g,h,d):e}function Qc(a,b,c,d,e){var f=c.h,g,h;a[b]=(m,n,l)=>f(m,n,l,h||=Oc(d).K,g||=Rc(d),e)}
+function Rc(a){var b=a[Kc];if(b!=null)return b;var c=Oc(a);b=c.Z?(d,e)=>Mc(d,e,c):(d,e)=>{a:{Ac();try{for(;yc(e)&&e.i!=4;){let F=e.l,B=c[F];if(B==null){let C=c.O;if(C){let G=C[F];if(G){let H=Sc(G);H!=null&&(B=c[F]=H)}}}if(B==null||!B(e,d,F)){var f=e;let C=f.m;zc(f);if(f.N)var g=void 0;else{let G=f.h.h-C;f.h.h=C;c:{var h=f.h;f=G;if(f==0){g=qa||=new u(null,k);break c}if(f<0)throw Error();let H=h.h;var m=H+f;if(m>h.i)throw Error();h.h=m;var n=H;if(h.J&&h.o)var l=h.l.subarray(n,n+f);else{var p=h.l;m=
+n;f=n+f;l=m===f?new Uint8Array(0):p.slice(m,f)}f=l;g=f.length==0?qa||=new u(null,k):new u(f,k)}}f=void 0;m=d;n=F;var r=g;r&&((f=m[xa]??(m[xa]=new wb))[n]??(f[n]=[])).push(r)}}let t=tb(d);t&&(t.h=c.U[Lc]);var q=!0;break a}catch(t){if(t instanceof RangeError)throw new SyntaxError;throw t;}finally{V>0&&V--}q=void 0}return q};a[Kc]=b;a[Lc]=Tc.bind(a);return b}
+function Tc(a,b,c,d){var e=this[Jc],f=this[Kc],g=Gb(void 0,e.K),h=tb(a);if(h){var m=!1,n=e.O;if(n){e=(l,p,r)=>{if(r.length!==0)if(n[p])for(let q of r){l=tc(q);try{m=!0,f(g,l)}finally{xc(l)}}else d?.(a,p,r)};if(b==null)ub(h,e);else if(h!=null){let l=h[b];l&&e(h,b,l)}if(m){let l=a[w]|0;if(l&2&&l&2048&&!c?.ea)throw Error();let p=l&128?Ia:void 0,r=(q,t)=>{if(O(a,q,p)!=null)switch(c?.da){case 1:return;default:throw Error();}t!=null&&(l=P(a,l,q,t,p));delete h[q]};b==null?Ha(g,g[w]|0,(q,t)=>{r(q,t)}):r(b,
+O(g,b,p))}}}}function Sc(a){a=Array.isArray(a)?a[0]instanceof Gc?a:[Ic,a]:[a,void 0];var b=a[0].h;if(a=a[1]){let c=Rc(a),d=Oc(a).K;return(e,f,g)=>b(e,f,g,d,c)}return b};function Uc(a){return b=>{if(b==null||b=="")b=new a;else{b=JSON.parse(b);if(!Array.isArray(b))throw Error("dnarr");b=new a(Da(b))}return b}};function Vc(a){var b=new Wc,c=Yb(b);for(let d in a){let e=a[d];e!==void 0&&c.set(d,Xc(e))}return b}function Yc(a){var b={};Yb(a).forEach(function(c,d){b[d]=Zc(c)});return b}var Wc=class extends W{},$c=Uc(Wc);
+function Xc(a){var b=new Zb;switch(ba(a)){case "string":if(a!=null&&typeof a!=="string")throw Error();return $b(b,3,S,a);case "number":if(a!=null&&typeof a!=="number")throw Error(`Value of float/double field must be a number, found ${typeof a}: ${a}`);return $b(b,2,S,a);case "boolean":if(a!=null&&typeof a!=="boolean")throw Error(`Expected boolean but got ${ba(a)}: ${a}`);return $b(b,4,S,a);case "null":return $b(b,1,S,Za(0));case "array":let e=new ad;for(let f=0;f<a.length;f++){var c=e,d=Xc(a[f]);
+oc(c,1,Zb,d)}return nc(b,6,e);case "object":return a=Vc(a),nc(b,5,a);default:throw Error("Unexpected struct type.");}}
+function Zc(a){switch(cc(a.j,S)){case 1:return null;case 2:var b=R(a,S,2);return N(a,b,void 0,Wa)??0;case 3:return b=R(a,S,3),fb(N(a,b))??"";case 4:return b=R(a,S,4),a=N(a,b),(a==null||typeof a==="boolean"?a:typeof a==="number"?!!a:void 0)??!1;case 5:return Yc(ic(a,Wc,R(a,S,5)));case 6:b=ic(a,ad,R(a,S,6));a=[];b=kc(b,Zb,1);for(let c=0;c<b.length;c++)a[c]=Zc(b[c]);return a;default:throw Error("Unexpected struct type");}}var Zb=class extends W{},ad=class extends W{},S=[1,2,3,4,5,6];var bd=class extends W{getAppState(){return ic(this,Wc,1)}setAppState(a){return mc(this,1,a)}};function cd(a){var b=Number;var c=N(a,1,void 0,eb),d=typeof c;if(c!=null)if(d==="bigint")c=String(Ta(64,c));else if(Ya(c))if(d==="string")d=Va(Number(c)),K(d)?c=String(d):(d=c.indexOf("."),d!==-1&&(c=c.substring(0,d)),d=c.length,(c[0]==="-"?d<20||d===20&&c<="-9223372036854775808":d<19||d===19&&c<="9223372036854775807")||(c.length<16?Qa(Number(c)):(c=BigInt(c),I=Number(c&BigInt(4294967295))>>>0,J=Number(c>>BigInt(32)&BigInt(4294967295))),c=Sa()));else{if(c=Va(c),!K(c)){Qa(c);d=I;var e=J;if(c=e&2147483648)d=
+~d+1>>>0,e=~e>>>0,d==0&&(e=e+1>>>0);let f=e*4294967296+(d>>>0);d=Number.isSafeInteger(f)?f:Ra(d,e);c=typeof d==="number"?c?-d:d:c?"-"+d:d}}else c=void 0;b=b(c??"0");a=bb(N(a,2))??0;return new Date(b*1E3+a/1E6)}function dd(a,b){Number.isFinite(b)||(b=0);var c=Math.floor(b/1E3);if(c!=null)a:{if(!Ya(c))throw ta("int64");switch(typeof c){case "string":c=db(c);break a;case "bigint":c=E(Ta(64,c));break a;default:c=E(K(c)?c:cb(c))}}a=Q(a,1,c,"0");Q(a,2,ab((b%1E3+1E3)%1E3*1E6),0)}var hc=class extends W{};var ed=class extends W{i(){return $a(N(this,1))??0}};var fd=class extends W{};function gd(a){return kc(a,fd,4)}function hd(a){var b=new id;Qb(b);var c=b.j,d=c[w]|0;if(a==null)P(c,d,4);else{var e=a===x?7:a[w]|0,f=e,g=Vb(e),h=g||Object.isFrozen(a),m=!0,n=!0;for(let p=0;p<a.length;p++){var l=a[p];g||(l=A(l),m&&=!l,n&&=l)}g||(e=m?13:5,e=n?e&-4097:e|4096);h&&e===f||(a=[...a],f=0,e=Wb(e,d));e!==f&&(a[w]=e);d=P(c,d,4,a);2&e||!(4096&e||16&e)||M(c,d)}return b}var id=class extends W{setScheduledNotificationConfigs(a,b){oc(this,4,fd,b,a,1);return this}},jd=Uc(id),kd=[1,2,3,6];function ld(a){a=a.j;var b=a[w]|0,c=Xb(a,1),d=c===x?7:c[w]|0,e=Ea(d,b),f=!(4&e);if(f){let g=0,h=0;for(;g<c.length;g++){let m=$a(c[g]);m!=null&&(c[h++]=m)}h<g&&(c.length=h);e=(e|4)&-513;e&=-1025;e&=-4097}e!==d&&(c[w]=e,2&e&&Object.freeze(c));return c=Ub(c,e,a,b,1,4,f,!1)}var md=class extends W{};var nd=function(a,b){return(c,d)=>{a:{let f={M:!0};d&&Object.assign(f,d);c=tc(c,void 0,void 0,f);try{let g=new a,h=g.j;Rc(b)(h,c);var e=g;break a}catch(g){if(g instanceof RangeError)throw new SyntaxError;throw g;}finally{xc(c)}e=void 0}return e}}(md,[0,new Gc(function(a,b,c){if(a.i!==0&&a.i!==2)return!1;var d=b[w]|0;if(d&2)throw Error();var e=d&128?Ia:void 0,f=Xb(b,c,e),g=f===x?7:f[w]|0,h=Ea(g,d);if(2&h||Vb(h)||16&h)h===g||Vb(h)||(f[w]=h),f=[...f],g=0,h=Wb(h,d),P(b,d,c,f,e);h&=-13;h!==g&&(f[w]=h);
+b=f;if(a.i==2)for(c=U(a.h)>>>0,c=a.h.h+c;a.h.h<c;)b.push(U(a.h));else b.push(U(a.h));return!0},Ec)]);/*
+
+
+ Copyright (c) 2015-2018 Google, Inc., Netflix, Inc., Microsoft Corp. and contributors
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+     http://www.apache.org/licenses/LICENSE-2.0
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+*/
+var od=class extends Error{constructor(a){super(a?`${a.length} errors occurred during unsubscription:
+${a.map((b,c)=>`${c+1}) ${b.toString()}`).join("\n  ")}`:"");this.h=a;Object.setPrototypeOf(this,new.target.prototype);this.name="UnsubscriptionError"}};function pd(a,b){a&&(b=a.indexOf(b),0<=b&&a.splice(b,1))};function X(a){return typeof a==="function"};var Y=class{constructor(a){this.C=a;this.closed=!1;this.l=this.i=null}unsubscribe(){if(!this.closed){this.closed=!0;let c=this.i;if(Array.isArray(c))for(var a of c)a.remove(this);else c?.remove(this);a=this.C;if(X(a))try{a()}catch(e){var b=e instanceof od?e.h:[e]}let d=this.l;if(d){this.l=null;for(let e of d)try{X(e)?e():e.unsubscribe()}catch(f){b=b??[],f instanceof od?b=[...b,...f.h]:b.push(f)}}if(b)throw new od(b);}}add(a){if(a&&a!==this)if(this.closed)X(a)?a():a.unsubscribe();else{if(a instanceof
+Y){if(a.closed||a.H(this))return;a.m(this)}(this.l=this.l??[]).push(a)}}H(a){var b=this.i;return b===a||Array.isArray(b)&&b.includes(a)}m(a){var b=this.i;this.i=Array.isArray(b)?(b.push(a),b):b?[b,a]:a}B(a){var b=this.i;b===a?this.i=null:Array.isArray(b)&&pd(b,a)}remove(a){var b=this.l;b&&pd(b,a);a instanceof Y&&a.B(this)}},qd=Y,rd=new Y;rd.closed=!0;qd.h=rd;function sd(a){return a instanceof Y||a&&"closed"in a&&X(a.remove)&&X(a.add)&&X(a.unsubscribe)};function td(a){setTimeout(()=>{throw a;})};var wd=class extends Y{static create(a,b,c){return new ud(a,b,c)}constructor(){super();this.h=!1;this.destination=new vd({next:void 0});sd()&&(void 0).add(this)}next(a){this.h||this.I(a)}error(a){this.h||(this.h=!0,this.A(a))}complete(){this.h||(this.h=!0,this.o())}unsubscribe(){this.closed||(this.h=!0,super.unsubscribe())}I(a){this.destination.next(a)}A(a){this.destination.error(a);this.unsubscribe()}o(){this.destination.complete();this.unsubscribe()}};
+class vd{constructor(a){this.h=a}next(a){var b=this.h;if(b.next)try{b.next(a)}catch(c){td(c)}}error(a){var b=this.h;if(b.error)try{b.error(a)}catch(c){td(c)}else td(a)}complete(){var a=this.h;if(a.complete)try{a.complete()}catch(b){td(b)}}}var ud=class extends wd{constructor(a,b,c){super();var d;X(a)||!a?d={next:a??void 0,error:b??void 0,complete:c??void 0}:d=a;this.destination=new vd(d)}};var xd=typeof Symbol==="function"&&Symbol.observable||"@@observable";var yd=class{constructor(a){a&&(this.i=a)}subscribe(a,b,c){a=a&&a instanceof wd||a&&X(a.next)&&X(a.error)&&X(a.complete)&&sd(a)?a:new ud(a,b,c);b=this.ba;c=this.source;a.add(b?b.call(a,c):c?this.i(a):this.o(a));return a}o(a){try{return this.i(a)}catch(b){a.error(b)}}forEach(a,b){b=b??void 0??Promise;return new b((c,d)=>{var e=this.subscribe(f=>{try{a(f)}catch(g){d(g),e?.unsubscribe()}},d,c)})}i(a){return this.source?.subscribe(a)}[xd](){return this}};yd.create=a=>new yd(a);var zd=class extends Error{constructor(){super("object unsubscribed");Object.setPrototypeOf(this,new.target.prototype);this.name="ObjectUnsubscribedError"}};var Ad=class extends yd{constructor(){super();this.m=[];this.A=this.h=this.closed=!1;this.C=null}l(){if(this.closed)throw new zd;}next(a){this.l();if(!this.h){let b=this.m.slice();for(let c of b)c.next(a)}}error(a){this.l();if(!this.h){this.A=this.h=!0;this.C=a;let b=this.m;for(;b.length;)b.shift().error(a)}}complete(){this.l();if(!this.h){this.h=!0;let a=this.m;for(;a.length;)a.shift().complete()}}unsubscribe(){this.h=this.closed=!0;this.m=null}o(a){this.l();return super.o(a)}i(a){this.l();this.I(a);
+return this.B(a)}B(a){var b=this.h,c=this.m;return this.A||b?Y.h:(c.push(a),new Y(()=>pd(this.m,a)))}I(a){var b=this.C,c=this.h;this.A?a.error(b):c&&a.complete()}};Ad.create=(a,b)=>new Bd(a,b);var Bd=class extends Ad{constructor(a,b){super();this.destination=a;this.source=b}next(a){this.destination?.next?.(a)}error(a){this.destination?.error?.(a)}complete(){this.destination?.complete?.()}i(a){return this.source?.subscribe(a)??Y.h}};function Cd(a){var b=a.H;a=a.buffer;b<Infinity&&b<a.length&&a.splice(0,a.length-b)}var Dd=class extends Ad{constructor(){super();this.H=1;this.buffer=[];this.H=1}next(a){var b=this.buffer;this.h||b.push(a);Cd(this);super.next(a)}i(a){this.l();Cd(this);var b=this.B(a),c=this.buffer.slice();for(let d=0;d<c.length&&!a.closed;d+=1)a.next(c[d]);this.I(a);return b}};function Ed(a,b,c,d){var e=setTimeout(()=>{d(Error(`callModel timed out after 60000ms for request ID: ${b}`));a.F.delete(b)},6E4);a.F.set(b,{W:c,aa:e})}
+function Fd(a){window.addEventListener("message",b=>{if(b.source===window.parent){var c=b.data;b=c.action;c=c.payload;if(b==="ThemeChange"&&c&&(c==="light"||c==="dark"))a.R.next(c);else if(b==="AppDataChange"&&c)a.T?.next(c);else if(b==="RenderingModeChange"&&c&&(c==="embedded"||c==="standalone"))a.P.next(c);else if(b==="CallModelResponse"&&c){a:{try{var d=JSON.parse(c);if(!d||typeof d!=="object"){var e=null;break a}let f=d.requestId,g=d.text,h=d.isFinal;e=f&&typeof f==="string"&&g&&typeof g==="string"&&
+typeof h==="boolean"?{requestId:f,text:g,isFinal:h}:null;break a}catch(f){e=null;break a}e=void 0}if(e){if(d=a.F.get(e.requestId))d.W(e.text,e.isFinal),e.isFinal&&(clearTimeout(d.aa),a.F.delete(e.requestId))}else console.error("Failed to parse call model response: ",c)}}})}
+function Z(a,b,c,d,e,f){return new Promise((g,h)=>{var m=setTimeout(()=>{window.removeEventListener("message",n);h(Error(e))},d),n=l=>{l.source===window.parent&&l.data.action===c&&(clearTimeout(m),window.removeEventListener("message",n),g(l.data.payload||null))};window.addEventListener("message",n);a.sendMessage(b,f)})}
+function Gd(a){var b=jd(a);a={};var c=ic(b,bd,R(b,kd,3))?.getAppState();c&&(a.appState=Yc(c));(b=gd(b))&&b.length>0&&(a.scheduledNotificationConfigs=b.map(d=>{var e={type:Hd($a(N(d,3))??0)};bb(N(d,1))!=null&&(e.intervalMinutes=bb(N(d,1))??0);Tb(d)&&(e.createTime=cd(fc(d)));return e}));return a}
+function Id(a){return(a=gd(jd(a)))&&a.length!==0?{scheduledNotificationConfigs:a.map(b=>{var c={type:Hd($a(N(b,3))??0)};bb(N(b,1))!=null&&(c.intervalMinutes=bb(N(b,1))??0);Tb(b)&&(c.createTime=cd(fc(b)));c.schedulingStatus=Jd(ic(b,ed,4)?.i());return c})}:{scheduledNotificationConfigs:[]}}
+class Kd{constructor(){this.D=Ld();this.API_VERSION="1.0";this.R=new Ad;this.P=new Dd;this.F=new Map;this.Y=(b,c,d,e,f)=>{this.notifyAppError(typeof b==="string"?b:f?.message||"Script execution error");return!0};this.X=b=>{b=b.reason;this.notifyAppError(typeof b==="string"?b:b?.message||"Unhandled promise rejection")};this.clientType="notebooklm-web";Fd(this);var a=ld(this.D);a.includes(10)&&(window.onerror=this.Y,window.addEventListener("unhandledrejection",this.X));a.includes(6)&&a.includes(2)&&
+(this.openArtifactCustomizationDialogWithInitialPrompt=b=>{b=JSON.stringify(b);this.sendMessage("OpenArtifactCustomizationDialogWithInitialPrompt",b)});a.includes(7)&&(this.updateAppData=async(b,c)=>{try{this.sendMessage("UpdateAppData",JSON.stringify({appData:b,etag:c}))}catch(d){throw Error(`Failed to update app data: ${d}`);}});if(a.includes(8)){let b=new Ad;this.addAppDataListener=c=>{b.subscribe(c)};this.T=b}a.includes(3)&&(this.askQuestion=b=>{this.sendMessage("AskQuestion",b)});a.includes(25)&&
+(this.dispatchStreamzEvent=b=>{this.sendMessage("DispatchStreamzEvent",JSON.stringify(b))});a.includes(9)&&(this.setScheduledNotificationConfigs=async b=>{try{let c=b.map(e=>{var f=new fd;f=Q(f,3,Za(Md(e.type)),0);e.intervalMinutes!=null&&Sb(f,1,ab(e.intervalMinutes));if(e.schedulingStatus!=null){var g=new ed;g=Q(g,1,Za(Nd(e.schedulingStatus)),0);mc(f,4,g)}e.createTime!=null&&(g=new hc,dd(g,e.createTime.getTime()),mc(f,2,g));return f}),d=Fc(hd(c));this.sendMessage("SetScheduledNotificationConfigs",
+d)}catch(c){throw c instanceof Error?c:Error(`Error serializing configs: ${c}`);}},this.getArtifactUserState=async()=>{var b=await Z(this,"GetArtifactUserState","GetArtifactUserStateResponse",5E3,"getArtifactUserState timed out after 5000ms");if(b)try{return Gd(b)}catch(c){throw c instanceof Error?c:Error(String(c));}return null});a.includes(11)&&(this.updateScheduledNotificationConfig=async b=>{try{var c=new fd;var d=Q(c,3,Za(Md(b.type)),0);b.intervalMinutes!=null&&Sb(d,1,ab(b.intervalMinutes));
+if(b.schedulingStatus!=null){var e=new ed;var f=Q(e,1,Za(Nd(b.schedulingStatus)),0);mc(d,4,f)}if(b.createTime!=null){let h=new hc;dd(h,b.createTime.getTime());mc(d,2,h)}let g=Fc(d);this.sendMessage("UpdateScheduledNotificationConfig",g)}catch(g){throw g instanceof Error?g:Error(`Error serializing config: ${g}`);}},this.listScheduledNotificationConfigs=async b=>{if(b=await Z(this,"ListScheduledNotificationConfigs","ListScheduledNotificationConfigsResponse",5E3,"listScheduledNotificationConfigs timed out after 5000ms",
+b))try{return Id(b).scheduledNotificationConfigs??[]}catch(c){throw c instanceof Error?c:Error(String(c));}return[]});a.includes(12)&&(this.getSessionIntent=()=>Z(this,"GetSessionIntent","GetSessionIntentResponse",5E3,"getSessionIntent timed out after 5000ms"));a.includes(13)&&(this.checkNotificationPreference=async b=>{if(b==="unspecified")throw Error("Cannot check notification preference for UNKNOWN notification type.");return await Z(this,"CheckNotificationPreference","CheckNotificationPreferenceResponse",
+15E3,"checkNotificationPreference timed out after 15000ms",b)==="NOTIFICATION_ENABLED"},this.getNotificationPreferenceStatus=async b=>{if(b==="unspecified")throw Error("Cannot get notification preference status for UNKNOWN notification type.");return await Z(this,"GetNotificationPreferenceStatus","GetNotificationPreferenceStatusResponse",15E3,"getNotificationPreferenceStatus timed out after 15000ms",b)==="NOTIFICATION_ENABLED"});a.includes(14)&&(this.callModel=async(b,c)=>new Promise((d,e)=>{var f=
+crypto?.randomUUID?.()||Math.random().toString(36).substring(2),g=0;Ed(this,f,(h,m)=>{if(c&&h){let n=h.slice(g);g=h.length;n&&c(n)}m&&d(h||"")},e);this.sendMessage("CallModel",JSON.stringify({prompt:b,requestId:f}))}))}sendMessage(a,b){window.parent.postMessage({version:this.API_VERSION,action:a,payload:b??""},"*")}addThemeChangeListener(a,b){this.R.subscribe(a);b&&this.sendMessage("GetTheme","")}addRenderingModeChangeListener(a){this.P.subscribe(a)}notifyAppReady(){ld(this.D).includes(4)&&this.sendMessage("AppReady")}notifyAppError(a){ld(this.D).includes(10)&&
+this.sendMessage("AppError",a)}setAppState(a){try{let b=Vc(a);if(!b)return Promise.reject(Error("Failed to convert state to Struct"));let c=Fc(b);this.sendMessage("SetAppState",c);return Promise.resolve()}catch(b){return Promise.reject(b instanceof Error?b:Error(`Error serializing app state: ${b}`))}}async getAppState(){var a=await Z(this,"GetAppState","GetAppStateResponse",5E3,"getAppState timed out after 5000ms");if(a)try{return Yc($c(a))}catch(b){throw b instanceof Error?b:Error(String(b));}return null}triggerFileDownload(a){a=
+JSON.stringify(a);this.sendMessage("TriggerFileDownload",a)}dispatchLogEvent(a){ld(this.D).includes(1)&&this.sendMessage("DispatchLogEvent",a)}}function Md(a){switch(a){case "study_reminder":return 1;case "fsrs_review_reminder":return 2;default:return 0}}function Hd(a){switch(a){case 1:return"study_reminder";case 2:return"fsrs_review_reminder";default:return"unspecified"}}
+function Jd(a){switch(a){case 1:return"pending";case 2:return"scheduled";case 3:return"failed";case 4:return"disabled";default:return"unspecified"}}function Nd(a){switch(a){case "pending":return 1;case "scheduled":return 2;case "failed":return 3;case "disabled":return 4;default:return 0}}
+function Ld(){var a=document.querySelector("script[data-api-capabilities]")?.getAttribute("data-api-capabilities");if(!a)return new md;try{let b=atob(a),c=new Uint8Array(b.length);for(a=0;a<b.length;a++)c[a]=b.charCodeAt(a);if(c)return nd(c)}catch(b){console.error("Failed to decode client capabilities:",b)}return new md};window.notebookAppApi=new class extends Kd{};}).call(this);</script>
+  <script>
+    // Read CSS custom properties from :root so zero inline colors are hardcoded in JS logic where tokens exist
+    function cssVar(name) {
+      return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+    }
+
+    const DATA_MONTHS = {
+      jul: {
+        label: `Julho/2026`,
+        recKg: 490,
+        rejKg: 576,
+        totalKg: 1066,
+        rate: 45.97,
+        volDay: 53.09,
+        costBase: 118.09,
+        costCond: 131.06,
+        cdf: `CDF nº 738912`
+      },
+      ago: {
+        label: `Agosto/2026`,
+        recKg: 450,
+        rejKg: 1148,
+        totalKg: 1598,
+        rate: 28.16,
+        volDay: 105.81,
+        costBase: 108.45,
+        costCond: 120.36,
+        cdf: `CDF nº 751044`
+      },
+      set: {
+        label: `Setembro/2026`,
+        recKg: 520,
+        rejKg: 755,
+        totalKg: 1275,
+        rate: 40.78,
+        volDay: 71.90,
+        costBase: 125.32,
+        costCond: 139.08,
+        cdf: `CDF nº 764921`
+      }
+    };
+
+    const DATA_QUARTERLY_PROJ = [
+      { label: `T1 (3 meses)`, base: 351.88, cond: 390.52 },
+      { label: `T2 (6 meses)`, base: 703.77, cond: 781.04 },
+      { label: `T3 (9 meses)`, base: 1055.65, cond: 1171.56 },
+      { label: `Anual (12m)`, base: 1407.54, cond: 1562.07 }
+    ];
+
+    const FLOW_NODES = {
+      centralizado: {
+        badge: `ORIGEM CENTRALIZADA`,
+        title: `49 Unidades Autônomas + Áreas Comuns`,
+        sub: `Gestão centralizada MS Satélite / Tok Ambiental (Blocos A e B)`,
+        desc: `Das 51 unidades ocupadas em 31/10/2026 (de 60 totais: 40 lojas e 20 salas), 49 utilizam a estrutura centralizada do Villa Mall, além das áreas de circulação, sanitários e administrativas.`,
+        bullets: [
+          `Geração média de indiferenciados: 77,00 L/dia (26,95 kg/dia ou 1,57 L/dia/unidade).`,
+          `Fração predominante: papelão ondulado, papel, plástico e alumínio.`,
+          `Adesão voluntária ao Art. 21 da Lei nº 12.305/2010 com emissão de MTR eletrônico.`
+        ]
+      },
+      gg: {
+        badge: `GRANDES GERADORES (>120 L/DIA)`,
+        title: `Padaria Pão Dourado & Rest. Cantinho do Pastel`,
+        sub: `Enquadramento individual pelo Art. 3º do Decreto DF nº 37.568/2016`,
+        desc: `As duas operações de alimentação ultrapassam individualmente 120 L/dia de indiferenciados (concentrando a fração orgânica) e operam fora do fluxo centralizado do Villa Mall.`,
+        bullets: [
+          `Possuem PGRS próprio e contratos independentes para coleta e destinação de rejeitos/orgânicos.`,
+          `Recicláveis secos são integrados à coleta seletiva do Villa Mall (Decreto DF nº 44.607/2023 — RECICLADF).`,
+          `Administração monitora e orienta a guarda documental (PGRS e MTRs) para fiscalização (DF Legal, SLU, IBRAM).`
+        ]
+      },
+      'central-rej': {
+        badge: `INFRAESTRUTURA BLOCO A`,
+        title: `Central de Resíduos (≈ 25 m²)`,
+        sub: `Armazenamento temporário de não recicláveis — Av. das Castanheiras`,
+        desc: `Edificada em alvenaria e estrutura metálica, cobertura de fibrocimento, ventilação natural e piso cimentado de alta resistência, em conformidade com a ABNT NBR 11174:1990.`,
+        bullets: [
+          `Equipamentos: contêineres de 1 m³ para fração orgânica e indiferenciados.`,
+          `Inspeções diárias da Tok Ambiental para vedação, prevenção de chorume e odores.`,
+          `Ponto focal da NC-01: requer contratação de dedetização contínua (NBR 15584).`
+        ]
+      },
+      'central-rec': {
+        badge: `INFRAESTRUTURA BLOCO B`,
+        title: `Central de Recicláveis (≈ 35 m²) + Contêiner UV`,
+        sub: `Triagem e armazenamento de recicláveis secos — Reformada em Jan/2025`,
+        desc: `Lojistas depositam papelão no contêiner vermelho com proteção UV em frente à Central (Bloco A), que é transferido para o térreo do Bloco B (piso cerâmico e alvenaria revestida, NBR 11174:1990).`,
+        bullets: [
+          `Capacidade operacional: ≈ 6.000 litros/mês (contêineres de 1.000 L).`,
+          `Recuperação média: 486,7 kg/mês (15,87 kg/dia; densidade aparente 0,081 kg/L).`,
+          `Ponto focal da NC-02: rotina de limpeza 3×/semana e higienização 2×/mês (Supera Conservação).`
+        ]
+      },
+      pead: {
+        badge: `IN Nº 89/2016 SLU/DF`,
+        title: `Contêineres Marrons PEAD Individualizados (1 m³)`,
+        sub: `Segregação física exclusiva para cada Grande Gerador interno`,
+        desc: `Disponibilizados pela Administração em PEAD rígido de alta resistência, com tampa articulada, dreno para líquidos e identificação individual por CNPJ.`,
+        bullets: [
+          `Assegura demarcação sanitária e rastreabilidade separada frente ao fluxo centralizado.`,
+          `Inspeções periódicas verificam fechamento das tampas e ausência de sacos fora dos contentores.`,
+          `Ocorrências são comunicadas de imediato ao respectivo Grande Gerador para regularização.`
+        ]
+      },
+      aterro: {
+        badge: `DISPOSIÇÃO FINAL LICENCIADA`,
+        title: `Ecopense Ecologia Urbana → CGA Baru S/A`,
+        sub: `DMR nº 732717 · CDFs nº 738912, 751044 e 764921 (SINIR)`,
+        desc: `Contrato de 31/07/2017 (Termo Aditivo nº 25/2022-DF) precificado por tonelada com Taxa de Tratamento para Disposição Final inclusa.`,
+        bullets: [
+          `Massa enviada no 3º Trim/2026: 2.479 kg (2,479 t) com 100% de conciliação MTR/CDF (tolerância 0%).`,
+          `Custo apurado no trimestre: R$ 597,44 (Base R$ 241/t) a R$ 663,03 (Condicional R$ 267,46/t).`,
+          `Sem coleta seletiva, a despesa subiria para R$ 949,30 – R$ 1.053,52 (+37,07%).`
+        ]
+      },
+      reciclagem: {
+        badge: `ECONOMIA CIRCULAR E INCLUSÃO`,
+        title: `Catador Autônomo → Capital Recicláveis`,
+        sub: `Rastreabilidade por tickets de pesagem mensal (Quadro 15)`,
+        desc: `A coleta seletiva valoriza a inclusão socioeconômica: o catador autônomo parceiro coleta os materiais segregados pela Tok Ambiental e comercializa na recicladora Capital Recicláveis (DF).`,
+        bullets: [
+          `Massa recuperada no 3º Trim/2026: 1.460 kg (Jul 490 kg, Ago 450 kg, Set 520 kg).`,
+          `Receita da venda pertence ao catador; o Villa Mall captura economia via custo evitado de tarifa.`,
+          `Meta até Dez/2027: elevar a média móvel trimestral para ≥ 500 kg/mês.`
+        ]
+      },
+      'coleta-gg': {
+        badge: `CONFORMIDADE AUTÔNOMA`,
+        title: `Contratos Privados dos Grandes Geradores`,
+        sub: `Arts. 3º e 11 do Decreto Distrital nº 37.568/2016`,
+        desc: `Cada Grande Gerador interno responde integralmente pelo manejo, transporte e destinação final de seus resíduos indiferenciados e orgânicos.`,
+        bullets: [
+          `Desonera o cálculo volumétrico centralizado do Villa Mall perante o SLU/DF.`,
+          `A Administração atua na orientação documental e guarda de cópias de PGRS e MTR para fiscalizações.`,
+          `Em caso de desabastecimento ou irregularidade operacional, notificações formais são registradas.`
+        ]
+      }
+    };
+
+    const DEFAULT_NCS = [
+      {
+        id: `NC-01`,
+        severity: `Crítica`,
+        desc: `Presença de vetores (ratos, baratas, escorpiões) na Central de Resíduos e relatos de lojistas sobre pragas no interior das lojas.`,
+        action: `Implementar contrato anual de controle de pragas (NBR 15584) e higienização reforçada.`,
+        owner: `Administração MS Satélite / RT do PGRS · Imediato`,
+        status: `Em Execução`
+      },
+      {
+        id: `NC-02`,
+        severity: `Maior`,
+        desc: `Limpeza irregular da Central de Recicláveis e dos contêineres de armazenamento temporário.`,
+        action: `Cumprir rotina de limpeza 3×/semana e higienização dos contêineres 2×/mês com check-list (sem custo adicional).`,
+        owner: `Supera Conservação / Gestor · Imediato`,
+        status: `Em Execução`
+      },
+      {
+        id: `NC-03`,
+        severity: `Maior`,
+        desc: `Ausência de formalização de acordos e coletores de logística reversa (lâmpadas, pilhas, baterias, eletrônicos, óleo vegetal).`,
+        action: `Formalizar adesão aos sistemas gratuitos (ex.: Reciclus, CONAMA nº 401/2008) e comunicar lojistas.`,
+        owner: `Administração / RT do PGRS · Até Jun/2027`,
+        status: `Em Aberto`
+      },
+      {
+        id: `NC-04`,
+        severity: `Maior`,
+        desc: `Descarte de recicláveis no fluxo comum destinado ao aterro sanitário (refletido na queda de desvio para 28,16% em Ago/2026).`,
+        action: `Medição por amostragem do rejeito, programa de segregação na fonte e treinamento de 100% das unidades ativas.`,
+        owner: `RT do PGRS (c/ aprovação Administração) · 6 meses / Dez/2027`,
+        status: `Em Aberto`
+      }
+    ];
+
+    const DEFAULT_ROADMAP = [
+      {
+        id: `ms-1`,
+        period: `OUT–NOV / 2026`,
+        title: `Revisão 01 do PGRS & Auditoria 3º Trim`,
+        detail: `Consolidação da DMR nº 732717 (77,00 L/dia), CDFs 738912, 751044 e 764921 e diagnóstico NC-01 a NC-04 (06/11/2026).`,
+        done: true,
+        type: `completed`
+      },
+      {
+        id: `ms-2`,
+        period: `JANEIRO / 2027`,
+        title: `DMR 4º Trim/2026 (SINIR) + Emissão de ART`,
+        detail: `Fechamento do 2º semestre (incluindo sazonalidade de fim de ano) e emissão da ART pelo RT Jorge Alexandre Silva (CRQ-12 12201553).`,
+        done: false,
+        type: `next`
+      },
+      {
+        id: `ms-3`,
+        period: `JAN–FEV / 2027`,
+        title: `Protocolo de Baixa Cadastral no SLU/DF`,
+        detail: `Petição formal de desenquadramento do Registro de Grande Gerador nº 007411, mantendo compliance voluntário MTR/CDF por 5 anos.`,
+        done: false,
+        type: `next`
+      },
+      {
+        id: `ms-4`,
+        period: `JUN–DEZ / 2027`,
+        title: `Logística Reversa e Meta ≥ 500 kg/mês`,
+        detail: `Coletores Classe I ativos até Jun/2027 (NC-03) e média móvel trimestral ≥ 500 kg/mês de recicláveis desviados até Dez/2027 (NC-04).`,
+        done: false,
+        type: `planned`
+      }
+    ];
+
+    let appState = {
+      scenario: `both`,
+      selectedMonth: `all`,
+      finChartMode: `cum`,
+      extraKg: 15,
+      selectedNode: `centralizado`,
+      ncFilter: `all`,
+      ncStatuses: {
+        'NC-01': `Em Execução`,
+        'NC-02': `Em Execução`,
+        'NC-03': `Em Aberto`,
+        'NC-04': `Em Aberto`
+      },
+      roadmapDone: {
+        'ms-1': true,
+        'ms-2': false,
+        'ms-3': false,
+        'ms-4': false
+      }
+    };
+
+    let diversionChartInstance = null;
+    let costChartInstance = null;
+    let dailyChartInstance = null;
+
+    function formatBRL(val) {
+      return val.toLocaleString(`pt-BR`, { style: `currency`, currency: `BRL` });
+    }
+
+    async function persistState() {
+      if (window.notebookAppApi && typeof window.notebookAppApi.setAppState === `function`) {
+        try {
+          await window.notebookAppApi.setAppState(appState);
+        } catch (e) {
+          // Graceful fallback if host unavailable in standalone preview
+        }
+      }
+    }
+
+    function setFeedback(msg) {
+      const el = document.getElementById(`live-feedback`);
+      if (el) el.textContent = msg;
+    }
+
+    function setScenario(scen) {
+      appState.scenario = scen;
+      updateScenarioUI();
+      renderCostChart();
+      persistState();
+    }
+
+    function updateScenarioUI() {
+      const btnBoth = document.getElementById(`btn-scen-both`);
+      const btnBase = document.getElementById(`btn-scen-base`);
+      const btnCond = document.getElementById(`btn-scen-cond`);
+      [btnBoth, btnBase, btnCond].forEach(b => { if (b) b.classList.remove(`active`); });
+
+      const tagEl = document.getElementById(`kpi-cost-tag`);
+      const valEl = document.getElementById(`kpi-cost-value`);
+      const subEl = document.getElementById(`kpi-cost-sub`);
+
+      if (appState.scenario === `base`) {
+        if (btnBase) btnBase.classList.add(`active`);
+        if (tagEl) tagEl.textContent = `Tarifa Base: R$ 241,00/t`;
+        if (valEl) valEl.textContent = `R$ 1.407,54`;
+        if (subEl) subEl.textContent = `Economia mensal de R$ 117,29 (R$ 351,88/trim) com base no Termo Aditivo nº 25/2022-DF.`;
+      } else if (appState.scenario === `cond`) {
+        if (btnCond) btnCond.classList.add(`active`);
+        if (tagEl) tagEl.textContent = `IGP-M 2026: R$ 267,46/t`;
+        if (valEl) subEl && (tagEl.textContent = `IGP-M 2026: R$ 267,46/t`);
+        if (valEl) valEl.textContent = `R$ 1.562,07`;
+        if (subEl) subEl.textContent = `Economia mensal de R$ 130,17 (R$ 390,52/trim) considerando reajuste acumulado IGP-M/FGV (+10,98%).`;
+      } else {
+        if (btnBoth) btnBoth.classList.add(`active`);
+        if (tagEl) tagEl.textContent = `Base × Condicional`;
+        if (valEl) valEl.textContent = `R$ 1.407,54 – 1.562,07`;
+        if (subEl) subEl.textContent = `Economia mensal de R$ 117,29 (Base) a R$ 130,17 (IGP-M) nas faturas da Ecopense; redução direta de 37,07% no aterro.`;
+      }
+    }
+
+    function selectMonth(mKey) {
+      appState.selectedMonth = mKey;
+      [`all`, `jul`, `ago`, `set`].forEach(k => {
+        const btn = document.getElementById(`m-btn-${k}`);
+        if (btn) btn.classList.toggle(`active`, k === mKey);
+      });
+
+      const pLbl = document.getElementById(`md-period-label`);
+      const tot = document.getElementById(`md-total`);
+      const rec = document.getElementById(`md-rec`);
+      const rej = document.getElementById(`md-rej`);
+      const rate = document.getElementById(`md-rate`);
+
+      if (mKey === `all`) {
+        if (pLbl) pLbl.textContent = `Período: 3º Trim/2026`;
+        if (tot) tot.textContent = `3.939 kg monitorados`;
+        if (rec) rec.textContent = `1.460 kg (486,7/mês)`;
+        if (rej) rej.textContent = `2.479 kg (77,00 L/dia)`;
+        if (rate) rate.textContent = `37,07% (Pico 45,97%)`;
+      } else {
+        const d = DATA_MONTHS[mKey];
+        if (d) {
+          if (pLbl) pLbl.textContent = `Mês: ${d.label} (${d.cdf})`;
+          if (tot) tot.textContent = `${d.totalKg.toLocaleString(`pt-BR`)} kg totais`;
+          if (rec) rec.textContent = `${d.recKg} kg (${formatBRL(d.costBase)}–${formatBRL(d.costCond)})`;
+          if (rej) rej.textContent = `${d.rejKg.toLocaleString(`pt-BR`)} kg (${d.volDay.toFixed(2).replace(`.`, `,`)} L/dia)`;
+          if (rate) rate.textContent = `${d.rate.toFixed(2).replace(`.`, `,`)}% desviado`;
+        }
+      }
+      renderDiversionChart();
+      persistState();
+    }
+
+    function setFinChartMode(mode) {
+      appState.finChartMode = mode;
+      const btnCum = document.getElementById(`fin-mode-cum`);
+      const btnQ3 = document.getElementById(`fin-mode-q3`);
+      if (btnCum) btnCum.classList.toggle(`active`, mode === `cum`);
+      if (btnQ3) btnQ3.classList.toggle(`active`, mode === `q3`);
+      renderCostChart();
+      persistState();
+    }
+
+    function syncExtraFromSlider(val) {
+      const numEl = document.getElementById(`input-extra-kg`);
+      if (numEl) numEl.value = val;
+      updateSimulator(Number(val));
+    }
+
+    function syncExtraFromNumber(val) {
+      let parsed = Number(val);
+      if (Number.isNaN(parsed)) parsed = 0;
+      parsed = Math.max(0, Math.min(300, parsed));
+      const sliderEl = document.getElementById(`slider-extra-kg`);
+      if (sliderEl) sliderEl.value = parsed;
+      updateSimulator(parsed);
+    }
+
+    function updateSimulator(extraKg) {
+      appState.extraKg = extraKg;
+      const baseMass = 486.7;
+      const totalMass = baseMass + extraKg;
+      const diffTarget = totalMass - 500;
+
+      const annualBase = (totalMass / 1000) * 241.00 * 12;
+      const annualCond = (totalMass / 1000) * 267.46 * 12;
+      const deltaBase = annualBase - 1407.54;
+      const deltaCond = annualCond - 1562.07;
+
+      const totalEl = document.getElementById(`sim-total-kg`);
+      const targetDiffEl = document.getElementById(`sim-target-diff`);
+      const baseEl = document.getElementById(`sim-annual-base`);
+      const condEl = document.getElementById(`sim-annual-cond`);
+      const dBaseEl = document.getElementById(`sim-delta-base`);
+      const dCondEl = document.getElementById(`sim-delta-cond`);
+      const badgeEl = document.getElementById(`sim-goal-badge`);
+
+      if (totalEl) totalEl.textContent = `${totalMass.toFixed(1).replace(`.`, `,`)} kg/mês`;
+      if (targetDiffEl) {
+        targetDiffEl.textContent = diffTarget >= 0
+          ? `+${diffTarget.toFixed(1).replace(`.`, `,`)} kg acima da meta`
+          : `${Math.abs(diffTarget).toFixed(1).replace(`.`, `,`)} kg para a meta`;
+      }
+      if (badgeEl) {
+        badgeEl.className = diffTarget >= 0 ? `tag tag-pine` : `tag tag-amber`;
+        badgeEl.textContent = diffTarget >= 0 ? `Meta ≥ 500 kg/mês Atingida` : `Abaixo da Meta (500 kg/mês)`;
+      }
+      if (baseEl) baseEl.textContent = formatBRL(annualBase);
+      if (condEl) condEl.textContent = formatBRL(annualCond);
+      if (dBaseEl) dBaseEl.textContent = `+${formatBRL(Math.max(0, deltaBase))}/ano`;
+      if (dCondEl) dCondEl.textContent = `+${formatBRL(Math.max(0, deltaCond))}/ano`;
+
+      persistState();
+    }
+
+    function selectFlowNode(nodeId) {
+      appState.selectedNode = nodeId;
+      document.querySelectorAll(`.flow-node`).forEach(el => {
+        el.classList.toggle(`selected`, el.id === `node-${nodeId}`);
+      });
+
+      const info = FLOW_NODES[nodeId];
+      if (!info) return;
+
+      const badge = document.getElementById(`insp-badge`);
+      const title = document.getElementById(`insp-title`);
+      const sub = document.getElementById(`insp-sub`);
+      const desc = document.getElementById(`insp-desc`);
+      const bullets = document.getElementById(`insp-bullets`);
+
+      if (badge) badge.textContent = info.badge;
+      if (title) title.textContent = info.title;
+      if (sub) sub.textContent = info.sub;
+      if (desc) desc.textContent = info.desc;
+      if (bullets) {
+        bullets.innerHTML = info.bullets.map(b => `<li>${b}</li>`).join(``);
+      }
+      persistState();
+    }
+
+    function filterNC(sev) {
+      appState.ncFilter = sev;
+      const map = { all: `nc-filter-all`, Crítica: `nc-filter-critica`, Maior: `nc-filter-maior` };
+      Object.keys(map).forEach(k => {
+        const el = document.getElementById(map[k]);
+        if (el) el.classList.toggle(`active`, k === sev);
+      });
+      renderNCTable();
+      persistState();
+    }
+
+    function changeNCStatus(ncId, newStatus) {
+      appState.ncStatuses[ncId] = newStatus;
+      updateNCSummaryKPI();
+      persistState();
+      setFeedback(`Status de ${ncId} atualizado para "${newStatus}" e salvo.`);
+    }
+
+    function updateNCSummaryKPI() {
+      const vals = Object.values(appState.ncStatuses);
+      const concluded = vals.filter(v => v === `Concluída`).length;
+      const inProgress = vals.filter(v => v === `Em Execução`).length;
+      const tag = document.getElementById(`kpi-nc-tag`);
+      if (tag) {
+        tag.textContent = `${concluded}/4 Concluídas · ${inProgress} Exec.`;
+        tag.className = concluded === 4 ? `tag tag-pine` : `tag tag-slate`;
+      }
+    }
+
+    function renderNCTable() {
+      const tbody = document.getElementById(`nc-table-body`);
+      if (!tbody) return;
+
+      const filtered = DEFAULT_NCS.filter(item =>
+        appState.ncFilter === `all` || item.severity === appState.ncFilter
+      );
+
+      tbody.innerHTML = filtered.map(item => {
+        const curStatus = appState.ncStatuses[item.id] || item.status;
+        const sevClass = item.severity === `Crítica` ? `tag-error` : `tag-amber`;
+        return `
+          <tr>
+            <td><strong style="font-family: var(--font-label);">${item.id}</strong></td>
+            <td><span class="tag ${sevClass}">${item.severity}</span></td>
+            <td>${item.desc}</td>
+            <td>${item.action}</td>
+            <td>${item.owner}</td>
+            <td>
+              <select class="status-select" aria-label="Status operacional de ${item.id}" onchange="changeNCStatus('${item.id}', this.value)">
+                <option value="Em Aberto" ${curStatus === `Em Aberto` ? `selected` : ``}>Em Aberto</option>
+                <option value="Em Execução" ${curStatus === `Em Execução` ? `selected` : ``}>Em Execução</option>
+                <option value="Concluída" ${curStatus === `Concluída` ? `selected` : ``}>Concluída (RT Validou)</option>
+              </select>
+            </td>
+          </tr>
+        `;
+      }).join(``);
+      updateNCSummaryKPI();
+    }
+
+    function toggleMilestone(msId, checked) {
+      appState.roadmapDone[msId] = checked;
+      renderRoadmap();
+      persistState();
+      setFeedback(`Marco do roteiro atualizado.`);
+    }
+
+    function renderRoadmap() {
+      const grid = document.getElementById(`roadmap-grid`);
+      if (!grid) return;
+
+      grid.innerHTML = DEFAULT_ROADMAP.map(ms => {
+        const isDone = Boolean(appState.roadmapDone[ms.id]);
+        const cardClass = isDone ? `completed` : (ms.type === `next` ? `next` : ``);
+        const tagClass = isDone ? `tag-pine` : (ms.type === `next` ? `tag-amber` : `tag-slate`);
+        const tagText = isDone ? `Concluído` : (ms.type === `next` ? `Próximo Passo` : `Planejado`);
+        return `
+          <article class="milestone-card ${cardClass}">
+            <div class="kpi-head">
+              <span class="kpi-label">${ms.period}</span>
+              <span class="tag ${tagClass}">${tagText}</span>
+            </div>
+            <label class="milestone-check">
+              <input type="checkbox" ${isDone ? `checked` : ``} onchange="toggleMilestone('${ms.id}', this.checked)">
+              <span>${ms.title}</span>
+            </label>
+            <p class="kpi-sub" style="margin: 0;">${ms.detail}</p>
+          </article>
+        `;
+      }).join(``);
+    }
+
+    function renderDiversionChart() {
+      const canvas = document.getElementById(`diversionChart`);
+      if (!canvas || typeof Chart === `undefined`) return;
+
+      if (diversionChartInstance) {
+        diversionChartInstance.destroy();
+      }
+
+      const cPine = cssVar(`--data-3`);
+      const cSlate = cssVar(`--data-1`);
+      const cGold = cssVar(`--data-2`);
+      const cContext = cssVar(`--data-context`);
+      const cInk = cssVar(`--on-surface`);
+      const cMuted = cssVar(`--on-surface-variant`);
+      const cGrid = cssVar(`--outline-variant`);
+
+      const keys = [`jul`, `ago`, `set`];
+      const recColors = keys.map(k => (appState.selectedMonth === `all` || appState.selectedMonth === k) ? cPine : cContext);
+      const rejColors = keys.map(k => (appState.selectedMonth === `all` || appState.selectedMonth === k) ? cSlate : cContext);
+
+      diversionChartInstance = new Chart(canvas, {
+        type: `bar`,
+        data: {
+          labels: [`Jul/2026`, `Ago/2026`, `Set/2026`],
+          datasets: [
+            {
+              label: `Recicláveis Desviados (kg)`,
+              data: [490, 450, 520],
+              backgroundColor: recColors,
+              borderRadius: 3,
+              yAxisID: `y`
+            },
+            {
+              label: `Rejeitos ao Aterro (kg)`,
+              data: [576, 1148, 755],
+              backgroundColor: rejColors,
+              borderRadius: 3,
+              yAxisID: `y`
+            },
+            {
+              type: `line`,
+              label: `Taxa de Desvio (%)`,
+              data: [45.97, 28.16, 40.78],
+              borderColor: cGold,
+              backgroundColor: cGold,
+              borderWidth: 2.5,
+              pointRadius: 5,
+              pointHoverRadius: 7,
+              tension: 0.2,
+              yAxisID: `y1`
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          interaction: { mode: `index`, intersect: false },
+          plugins: {
+            legend: {
+              position: `bottom`,
+              labels: {
+                color: cInk,
+                font: { family: `'Plus Jakarta Sans', sans-serif`, size: 12, weight: `600` },
+                boxWidth: 12
+              }
+            },
+            tooltip: {
+              callbacks: {
+                label: function(ctx) {
+                  if (ctx.dataset.yAxisID === `y1`) {
+                    return `${ctx.dataset.label}: ${ctx.parsed.y.toFixed(2).replace(`.`, `,`)}%`;
+                  }
+                  return `${ctx.dataset.label}: ${ctx.parsed.y.toLocaleString(`pt-BR`)} kg`;
+                }
+              }
+            }
+          },
+          scales: {
+            x: {
+              grid: { display: false },
+              ticks: { color: cInk, font: { family: `'Geist Mono', monospace`, size: 11, weight: `600` } }
+            },
+            y: {
+              position: `left`,
+              title: { display: true, text: `Massa (kg)`, color: cMuted, font: { family: `'Geist Mono', monospace`, size: 11 } },
+              grid: { color: cGrid },
+              ticks: { color: cMuted, font: { family: `'Geist Mono', monospace`, size: 11 } },
+              beginAtZero: true
+            },
+            y1: {
+              position: `right`,
+              min: 0,
+              max: 60,
+              title: { display: true, text: `Taxa de Desvio (%)`, color: cGold, font: { family: `'Geist Mono', monospace`, size: 11 } },
+              grid: { drawOnChartArea: false },
+              ticks: {
+                color: cMuted,
+                font: { family: `'Geist Mono', monospace`, size: 11 },
+                callback: v => `${v}%`
+              }
+            }
+          }
+        }
+      });
+    }
+
+    function renderCostChart() {
+      const canvas = document.getElementById(`costChart`);
+      if (!canvas || typeof Chart === `undefined`) return;
+
+      if (costChartInstance) {
+        costChartInstance.destroy();
+      }
+
+      const cSlate = cssVar(`--data-1`);
+      const cGold = cssVar(`--data-2`);
+      const cPine = cssVar(`--data-3`);
+      const cBrick = cssVar(`--data-4`);
+      const cInk = cssVar(`--on-surface`);
+      const cMuted = cssVar(`--on-surface-variant`);
+      const cGrid = cssVar(`--outline-variant`);
+
+      if (appState.finChartMode === `q3`) {
+        // Real vs Hypothetical without selective collection in Q3 2026
+        const datasets = [];
+        if (appState.scenario === `both` || appState.scenario === `base`) {
+          datasets.push({
+            label: `Cenário Base (R$ 241,00/t)`,
+            data: [597.44, 949.30, 351.86],
+            backgroundColor: cSlate,
+            borderRadius: 3
+          });
+        }
+        if (appState.scenario === `both` || appState.scenario === `cond`) {
+          datasets.push({
+            label: `Condicional IGP-M (R$ 267,46/t)`,
+            data: [663.03, 1053.52, 390.49],
+            backgroundColor: cGold,
+            borderRadius: 3
+          });
+        }
+
+        costChartInstance = new Chart(canvas, {
+          type: `bar`,
+          data: {
+            labels: [`Custo Real Aterro (2,479 t)`, `Hipotético Sem Coleta (3,939 t)`, `Custo Evitado 3º Trim`],
+            datasets: datasets
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: {
+                position: `bottom`,
+                labels: { color: cInk, font: { family: `'Plus Jakarta Sans', sans-serif`, size: 12, weight: `600` }, boxWidth: 12 }
+              },
+              tooltip: {
+                callbacks: {
+                  label: ctx => `${ctx.dataset.label}: ${formatBRL(ctx.parsed.y)}`
+                }
+              }
+            },
+            scales: {
+              x: { grid: { display: false }, ticks: { color: cInk, font: { family: `'Geist Mono', monospace`, size: 10.5 } } },
+              y: {
+                beginAtZero: true,
+                grid: { color: cGrid },
+                ticks: {
+                  color: cMuted,
+                  font: { family: `'Geist Mono', monospace`, size: 11 },
+                  callback: v => `R$ ${v}`
+                }
+              }
+            }
+          }
+        });
+        return;
+      }
+
+      const labels = DATA_QUARTERLY_PROJ.map(d => d.label);
+      const datasets = [];
+      if (appState.scenario === `both` || appState.scenario === `base`) {
+        datasets.push({
+          label: `Acumulado Base (R$ 241,00/t)`,
+          data: DATA_QUARTERLY_PROJ.map(d => d.base),
+          backgroundColor: cSlate,
+          borderColor: cSlate,
+          borderRadius: 3
+        });
+      }
+      if (appState.scenario === `both` || appState.scenario === `cond`) {
+        datasets.push({
+          label: `Acumulado Condicional IGP-M (R$ 267,46/t)`,
+          data: DATA_QUARTERLY_PROJ.map(d => d.cond),
+          backgroundColor: cGold,
+          borderColor: cGold,
+          borderRadius: 3
+        });
+      }
+
+      costChartInstance = new Chart(canvas, {
+        type: `bar`,
+        data: { labels, datasets },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: `bottom`,
+              labels: { color: cInk, font: { family: `'Plus Jakarta Sans', sans-serif`, size: 12, weight: `600` }, boxWidth: 12 }
+            },
+            tooltip: {
+              callbacks: {
+                label: ctx => `${ctx.dataset.label}: ${formatBRL(ctx.parsed.y)}`
+              }
+            }
+          },
+          scales: {
+            x: { grid: { display: false }, ticks: { color: cInk, font: { family: `'Geist Mono', monospace`, size: 11, weight: `600` } } },
+            y: {
+              beginAtZero: true,
+              grid: { color: cGrid },
+              ticks: {
+                color: cMuted,
+                font: { family: `'Geist Mono', monospace`, size: 11 },
+                callback: v => `R$ ${v}`
+              }
+            }
+          }
+        }
+      });
+    }
+
+    function renderDailyChart() {
+      const canvas = document.getElementById(`dailyChart`);
+      if (!canvas || typeof Chart === `undefined`) return;
+
+      if (dailyChartInstance) {
+        dailyChartInstance.destroy();
+      }
+
+      const cSlate = cssVar(`--data-1`);
+      const cGold = cssVar(`--data-2`);
+      const cPine = cssVar(`--data-3`);
+      const cError = cssVar(`--error`);
+      const cInk = cssVar(`--on-surface`);
+      const cMuted = cssVar(`--on-surface-variant`);
+      const cGrid = cssVar(`--outline-variant`);
+
+      dailyChartInstance = new Chart(canvas, {
+        type: `bar`,
+        data: {
+          labels: [`Jul/26`, `Ago/26 (Pico)`, `Set/26`, `Média Trim.`],
+          datasets: [
+            {
+              label: `Geração Diária (L/dia)`,
+              data: [53.09, 105.81, 71.90, 77.00],
+              backgroundColor: [cSlate, cGold, cSlate, cPine],
+              borderRadius: 3
+            },
+            {
+              type: `line`,
+              label: `Limite Legal (120,00 L/dia)`,
+              data: [120, 120, 120, 120],
+              borderColor: cError,
+              borderDash: [6, 4],
+              borderWidth: 2,
+              pointRadius: 0,
+              fill: false
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: `bottom`,
+              labels: { color: cInk, font: { family: `'Plus Jakarta Sans', sans-serif`, size: 11.5, weight: `600` }, boxWidth: 12 }
+            },
+            tooltip: {
+              callbacks: {
+                label: ctx => `${ctx.dataset.label}: ${ctx.parsed.y.toFixed(2).replace(`.`, `,`)} L/dia`
+              }
+            }
+          },
+          scales: {
+            x: { grid: { display: false }, ticks: { color: cInk, font: { family: `'Geist Mono', monospace`, size: 11 } } },
+            y: {
+              beginAtZero: true,
+              max: 140,
+              grid: { color: cGrid },
+              ticks: {
+                color: cMuted,
+                font: { family: `'Geist Mono', monospace`, size: 11 },
+                callback: v => `${v} L`
+              }
+            }
+          }
+        }
+      });
+    }
+
+    function exportGovernanceCsv() {
+      const headers = [`Codigo`, `Classificacao`, `Descricao`, `Acao_Corretiva`, `Responsavel_Prazo`, `Status_Atual`];
+      const rows = DEFAULT_NCS.map(nc => {
+        const st = appState.ncStatuses[nc.id] || nc.status;
+        return [nc.id, nc.severity, nc.desc, nc.action, nc.owner, st]
+          .map(val => `"${String(val).replace(/"/g, `""`)}"`)
+          .join(`;`);
+      });
+      const csvContent = `\uFEFF` + headers.join(`;`) + `\n` + rows.join(`\n`);
+
+      if (window.notebookAppApi && typeof window.notebookAppApi.triggerFileDownload === `function`) {
+        window.notebookAppApi.triggerFileDownload({
+          content: csvContent,
+          contentType: `text/csv`,
+          encoding: `UTF-8`,
+          filename: `villa_mall_matriz_nc_pgrs_2026.csv`
+        });
+        setFeedback(`Matriz de governança exportada (villa_mall_matriz_nc_pgrs_2026.csv).`);
+      } else {
+        const blob = new Blob([csvContent], { type: `text/csv;charset=utf-8;` });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement(`a`);
+        link.href = url;
+        link.download = `villa_mall_matriz_nc_pgrs_2026.csv`;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url);
+        setFeedback(`Matriz de governança exportada.`);
+      }
+    }
+
+    function resetDashboardState(btn) {
+      if (!btn) return;
+      if (btn.dataset.armed !== `true`) {
+        btn.dataset.armed = `true`;
+        btn.classList.add(`btn-warning-armed`);
+        btn.innerHTML = `<i data-lucide="alert-triangle" aria-hidden="true" width="16" height="16"></i> Clique novamente para confirmar`;
+        if (window.lucide) window.lucide.createIcons();
+        setFeedback(`Confirme o restauro clicando novamente no botão.`);
+        setTimeout(() => {
+          if (btn.dataset.armed === `true`) {
+            btn.dataset.armed = `false`;
+            btn.classList.remove(`btn-warning-armed`);
+            btn.innerHTML = `<i data-lucide="rotate-ccw" aria-hidden="true" width="16" height="16"></i> Restaurar Padrão`;
+            if (window.lucide) window.lucide.createIcons();
+          }
+        }, 4500);
+        return;
+      }
+
+      btn.dataset.armed = `false`;
+      btn.classList.remove(`btn-warning-armed`);
+      btn.innerHTML = `<i data-lucide="rotate-ccw" aria-hidden="true" width="16" height="16"></i> Restaurar Padrão`;
+      if (window.lucide) window.lucide.createIcons();
+
+      appState = {
+        scenario: `both`,
+        selectedMonth: `all`,
+        finChartMode: `cum`,
+        extraKg: 15,
+        selectedNode: `centralizado`,
+        ncFilter: `all`,
+        ncStatuses: {
+          'NC-01': `Em Execução`,
+          'NC-02': `Em Execução`,
+          'NC-03': `Em Aberto`,
+          'NC-04': `Em Aberto`
+        },
+        roadmapDone: {
+          'ms-1': true,
+          'ms-2': false,
+          'ms-3': false,
+          'ms-4': false
+        }
+      };
+
+      applyStateToUI();
+      persistState();
+      setFeedback(`Painel restaurado para os valores originais do PGRS (Rev. 01/2026).`);
+    }
+
+    function applyStateToUI() {
+      updateScenarioUI();
+      selectMonth(appState.selectedMonth || `all`);
+      setFinChartMode(appState.finChartMode || `cum`);
+      const sliderEl = document.getElementById(`slider-extra-kg`);
+      const numEl = document.getElementById(`input-extra-kg`);
+      if (sliderEl) sliderEl.value = appState.extraKg;
+      if (numEl) numEl.value = appState.extraKg;
+      updateSimulator(appState.extraKg);
+      selectFlowNode(appState.selectedNode || `centralizado`);
+      filterNC(appState.ncFilter || `all`);
+      renderRoadmap();
+      renderDailyChart();
+    }
+
+    async function initDashboard() {
+      if (window.lucide) {
+        window.lucide.createIcons();
+      }
+
+      if (window.notebookAppApi && typeof window.notebookAppApi.getAppState === `function`) {
+        try {
+          const saved = await window.notebookAppApi.getAppState();
+          if (saved && typeof saved === `object`) {
+            appState = {
+              ...appState,
+              ...saved,
+              ncStatuses: { ...appState.ncStatuses, ...(saved.ncStatuses || {}) },
+              roadmapDone: { ...appState.roadmapDone, ...(saved.roadmapDone || {}) }
+            };
+          }
+        } catch (e) {
+          // Proceed with defaults
+        }
+      }
+
+      applyStateToUI();
+
+      if (window.notebookAppApi && typeof window.notebookAppApi.notifyAppReady === `function`) {
+        window.notebookAppApi.notifyAppReady();
+      }
+    }
+
+    window.addEventListener(`DOMContentLoaded`, initDashboard);
+  </script>
+ 
+</body></html>
